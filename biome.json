@@ -1,0 +1,45 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "files": {
+    "ignore": [
+      "node_modules",
+      ".turbo",
+      ".next",
+      "next-env.d.ts",
+      "tsconfig.tsbuildinfo",
+      "pnpm-lock.yaml"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "useEditorconfig": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "all": true,
+      "correctness": {
+        "noUndeclaredDependencies": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": [
+        "commitlint.config.mjs",
+        "syncpack.config.mjs",
+        "cspell.config.mjs",
+        "vitest.config.mts",
+        "next.config.ts",
+        "apps/web/src/app/**"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ]
+}

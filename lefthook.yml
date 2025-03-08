@@ -22,6 +22,10 @@ pre-commit:
       run: pnpm cspell .
       glob: "*"
 
+    - name: lint
+      run: pnpm lint
+      glob: "*"
+
 commit-msg:
   parallel: true
   commands:

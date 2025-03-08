@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
     "cspell": "8.17.5",
@@ -19,6 +20,7 @@
     "clean": "turbo clean",
     "dev": "turbo dev",
     "editorconfig-checker": "editorconfig-checker",
+    "lint": "biome check --error-on-warnings",
     "preinstall": "npx only-allow pnpm",
     "prepare": "lefthook install",
     "syncpack-fix-mismatches": "syncpack fix-mismatches",

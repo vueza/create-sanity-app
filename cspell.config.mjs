@@ -13,5 +13,6 @@ export default {
     "codeowners",
     "turborepo",
     "nextjs",
+    "biomejs",
   ],
 };
