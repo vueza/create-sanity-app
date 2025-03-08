@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      editorconfig-checker:
+        specifier: 6.0.1
+        version: 6.0.1
       syncpack:
         specifier: 13.0.2
         version: 13.0.2
@@ -100,6 +103,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  editorconfig-checker@6.0.1:
+    resolution: {integrity: sha512-9qhGMJNBSDx+V2w7u8eh47AOMFe+9KWG6hzEG3nlB/7SATo0O65jOrqWbcutrToZh2ojtaGlLhQ9kVocWxwsrw==}
+    engines: {node: '>=20.11.0'}
+    hasBin: true
 
   effect@3.12.7:
     resolution: {integrity: sha512-BsDTgSjLbL12g0+vGn5xkOgOVhRSaR3VeHmjcUb0gLvpXACJ9OgmlfeH+/FaAZwM5+omIF3I/j1gC5KJrbK1Aw==}
@@ -420,6 +428,8 @@ snapshots:
       import-fresh: 3.3.1
       js-yaml: 4.1.0
       parse-json: 5.2.0
+
+  editorconfig-checker@6.0.1: {}
 
   effect@3.12.7:
     dependencies:
