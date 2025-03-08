@@ -18,8 +18,15 @@ pre-commit:
       run: pnpm editorconfig-checker
       glob: "*"
 
+    - name: cspell
+      run: pnpm cspell .
+      glob: "*"
+
 commit-msg:
   parallel: true
   commands:
     commitlint:
       run: pnpm commitlint --edit {1}
+
+    spell-check:
+      run: pnpm cspell --no-summary {1}
