@@ -17,3 +17,9 @@ pre-commit:
     - name: editorconfig checker
       run: pnpm editorconfig-checker
       glob: "*"
+
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}
