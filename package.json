@@ -5,7 +5,8 @@
     "cspell": "8.17.5",
     "editorconfig-checker": "6.0.1",
     "lefthook": "1.11.3",
-    "syncpack": "13.0.2"
+    "syncpack": "13.0.2",
+    "turbo": "2.4.4"
   },
   "engines": {
     "node": ">=22.14.0",
