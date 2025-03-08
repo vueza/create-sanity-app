@@ -1,0 +1,19 @@
+pre-push:
+  parallel: true
+  jobs:
+    - name: packages audit
+      run: pnpm audit
+
+    - name: validate branch name
+      run: npx validate-branch-name
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: syncpack
+      run: pnpm syncpack lint
+      glob: "package.json"
+
+    - name: editorconfig checker
+      run: pnpm editorconfig-checker
+      glob: "*"

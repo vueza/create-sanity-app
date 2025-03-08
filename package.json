@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "editorconfig-checker": "6.0.1",
+    "lefthook": "1.11.3",
     "syncpack": "13.0.2"
   },
   "engines": {
@@ -11,6 +12,7 @@
   "scripts": {
     "editorconfig-checker": "editorconfig-checker",
     "preinstall": "npx only-allow pnpm",
+    "prepare": "lefthook install",
     "syncpack-fix-mismatches": "syncpack fix-mismatches",
     "syncpack-format": "syncpack format",
     "syncpack-lint": "syncpack lint"
