@@ -26,6 +26,7 @@
     "syncpack-fix-mismatches": "syncpack fix-mismatches",
     "syncpack-format": "syncpack format",
     "syncpack-lint": "syncpack lint",
+    "synpack-update": "syncpack update",
     "test": "turbo test"
   }
 }
