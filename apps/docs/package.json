@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "3.2.5",
+    "@company/config-typescript": "workspace:*",
     "@storybook/addon-a11y": "8.6.4",
     "@storybook/addon-backgrounds": "8.6.4",
     "@storybook/addon-designs": "8.2.0",

@@ -11,6 +11,7 @@
     "styled-components": "6.1.15"
   },
   "devDependencies": {
+    "@company/config-typescript": "workspace:*",
     "@sanity/assist": "3.2.0",
     "@sanity/client": "6.28.3",
     "@t3-oss/env-core": "0.12.0",

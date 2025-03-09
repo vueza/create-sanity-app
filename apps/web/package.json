@@ -11,6 +11,7 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
+    "@company/config-typescript": "workspace:*",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.2.0",
     "@types/node": "22.13.10",
