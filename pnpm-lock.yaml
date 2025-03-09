@@ -35,6 +35,9 @@ importers:
 
   apps/cms:
     dependencies:
+      '@sanity/icons':
+        specifier: 3.7.0
+        version: 3.7.0(react@19.0.0)
       '@sanity/vision':
         specifier: 3.78.1
         version: 3.78.1(@babel/runtime@7.26.9)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.0.0(react@19.0.0))(react-is@18.3.1)(react@19.0.0)(styled-components@6.1.15(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
