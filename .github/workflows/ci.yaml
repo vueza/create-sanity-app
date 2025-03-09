@@ -118,6 +118,9 @@ jobs:
         run: pnpm install
 
       - name: Build
+        env:
+          SANITY_STUDIO_PROJECT_ID: ${{ secrets.SANITY_STUDIO_PROJECT_ID }}
+          SANITY_STUDIO_DATASET: ${{ secrets.SANITY_STUDIO_DATASET }}
         run: pnpm build
 
   check-types:

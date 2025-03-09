@@ -1,0 +1,28 @@
+{
+  "name": "@company/cms",
+  "version": "0.0.0",
+  "dependencies": {
+    "@sanity/vision": "3.78.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "sanity": "3.78.1",
+    "styled-components": "6.1.15"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.10",
+    "chokidar-cli": "3.0.0",
+    "typescript": "5.8.2"
+  },
+  "scripts": {
+    "build": "sanity build",
+    "check-types": "tsc",
+    "clean": "rm -rf .sanity .turbo dist node_modules",
+    "dev": "sanity dev",
+    "prebuild": "pnpm schema-extract && pnpm typegen-generate",
+    "predev": "pnpm schema-extract && pnpm typegen-generate",
+    "schema-extract": "sanity schema extract",
+    "start": "sanity start",
+    "typegen-generate": "sanity typegen generate",
+    "watch": "chokidar 'src/**' -c 'pnpm schema-extract && pnpm typegen-generate'"
+  }
+}

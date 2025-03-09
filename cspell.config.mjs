@@ -7,6 +7,10 @@ export default {
     "tsconfig.tsbuildinfo",
     "storybook-static",
     "coverage",
+    "dist",
+    ".sanity",
+    "sanity.types.ts",
+    "schema.json",
   ],
   words: [
     "cspell",

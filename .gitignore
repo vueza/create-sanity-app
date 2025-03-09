@@ -5,3 +5,6 @@ next-env.d.ts
 tsconfig.tsbuildinfo
 storybook-static
 coverage
+dist
+.sanity
+.env

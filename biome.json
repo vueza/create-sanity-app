@@ -9,7 +9,10 @@
       "tsconfig.tsbuildinfo",
       "pnpm-lock.yaml",
       "storybook-static",
-      "coverage"
+      "coverage",
+      "dist",
+      ".sanity",
+      "sanity.types.ts"
     ]
   },
   "formatter": {
@@ -32,6 +35,7 @@
         "*.config.mjs",
         "*.config.mts",
         "*.config.ts",
+        "*.cli.ts",
         "apps/web/src/app/**"
       ],
       "linter": {
