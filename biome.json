@@ -7,7 +7,8 @@
       ".next",
       "next-env.d.ts",
       "tsconfig.tsbuildinfo",
-      "pnpm-lock.yaml"
+      "pnpm-lock.yaml",
+      "storybook-static"
     ]
   },
   "formatter": {
@@ -19,7 +20,8 @@
     "rules": {
       "all": true,
       "correctness": {
-        "noUndeclaredDependencies": "off"
+        "noUndeclaredDependencies": "off",
+        "useImportExtensions": "off"
       }
     }
   },
@@ -37,6 +39,21 @@
         "rules": {
           "style": {
             "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["apps/docs/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off",
+            "noNamespaceImport": "off"
+          },
+          "correctness": {
+            "useImportExtensions": "off",
+            "noNodejsModules": "off"
           }
         }
       }
