@@ -1,8 +1,10 @@
 import { assist } from "@sanity/assist";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
+import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { env } from "./src/env";
+import { presentation } from "./src/presentation";
 import { structure } from "./src/structure";
 import { types } from "./src/types";
 
@@ -11,11 +13,16 @@ if (!env) {
 }
 
 export default defineConfig({
-  name: "default",
-  title: "Sanity",
+  name: env.SANITY_STUDIO_NAME,
+  title: env.SANITY_STUDIO_TITLE,
   projectId: env.SANITY_STUDIO_PROJECT_ID,
   dataset: env.SANITY_STUDIO_DATASET,
-  plugins: [structureTool({ structure }), assist(), visionTool()],
+  plugins: [
+    presentationTool(presentation),
+    structureTool(structure),
+    assist(),
+    visionTool(),
+  ],
   schema: {
     types,
   },

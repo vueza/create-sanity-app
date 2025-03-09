@@ -309,10 +309,15 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-page-query.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,  }
+// Query: *[_type == 'page' && slug.current == $slug][0] {    title,  }
 export type GetPageQueryResult = {
-  _id: string;
-  _type: "page";
+  title: string;
+} | null;
+
+// Source: ./src/queries/get-post-query.ts
+// Variable: getPostQuery
+// Query: *[_type == 'post' && slug.current == $slug][0] {    title,  }
+export type GetPostQueryResult = {
   title: string;
 } | null;
 
@@ -320,6 +325,7 @@ export type GetPageQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    title,\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n  }\n": GetPostQueryResult;
   }
 }
