@@ -28,11 +28,9 @@
   "overrides": [
     {
       "include": [
-        "commitlint.config.mjs",
-        "syncpack.config.mjs",
-        "cspell.config.mjs",
-        "vitest.config.mts",
-        "next.config.ts",
+        "*.config.mjs",
+        "*.config.mts",
+        "*.config.ts",
         "apps/web/src/app/**"
       ],
       "linter": {
