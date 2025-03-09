@@ -84,6 +84,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@company/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -175,6 +178,9 @@ importers:
       '@company/cms':
         specifier: workspace:*
         version: link:../cms
+      '@company/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@t3-oss/env-nextjs':
         specifier: 0.12.0
         version: 0.12.0(typescript@5.8.2)(zod@3.24.2)
@@ -232,6 +238,28 @@ importers:
         version: 3.0.8(@types/node@22.13.10)(@vitest/browser@3.0.8)(@vitest/ui@3.0.8)(jiti@2.4.2)(jsdom@26.0.0)(msw@2.7.3(@types/node@22.13.10)(typescript@5.8.2))(terser@5.39.0)(yaml@2.7.0)
 
   packages/config-typescript: {}
+
+  packages/ui:
+    dependencies:
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
+    devDependencies:
+      '@company/config-typescript':
+        specifier: workspace:*
+        version: link:../config-typescript
+      '@types/react':
+        specifier: 19.0.10
+        version: 19.0.10
+      '@types/react-dom':
+        specifier: 19.0.4
+        version: 19.0.4(@types/react@19.0.10)
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
 
 packages:
 
