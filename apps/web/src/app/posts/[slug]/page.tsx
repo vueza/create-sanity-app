@@ -1,4 +1,5 @@
 import { getPostQuery } from "@company/cms/queries/get-post-query";
+import { Content } from "@company/ui/components/content";
 import { notFound } from "next/navigation";
 import { sanityFetch } from "../../../sanity/live";
 
@@ -14,5 +15,11 @@ export default async function Post(props: Props) {
     notFound();
   }
 
-  return <div>{data.title}</div>;
+  return (
+    <div>
+      <h1>{data.title}</h1>
+
+      <Content value={data.content} />
+    </div>
+  );
 }

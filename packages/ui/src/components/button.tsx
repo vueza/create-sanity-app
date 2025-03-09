@@ -26,12 +26,10 @@ const button = tv({
   },
 });
 
-type ButtonVariants = VariantProps<typeof button>;
-
 export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
-    ButtonVariants {}
+    VariantProps<typeof button> {}
 
-export const Button = ({ size, color, ...props }: ButtonProps) => {
-  return <button {...props} className={button({ size, color })} />;
-};
+export const Button = ({ size, color, ...props }: ButtonProps) => (
+  <button {...props} className={button({ size, color })} />
+);

@@ -18,6 +18,7 @@ export const page = compose(
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: "slug",
       title: "Slug",
