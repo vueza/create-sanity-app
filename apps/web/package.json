@@ -22,7 +22,7 @@
   "scripts": {
     "build": "next build",
     "check-types": "tsc",
-    "clean": "rm -rf node_modules && rm -rf .next && rm next-env.d.ts && rm tsconfig.tsbuildinfo",
+    "clean": "rm -rf .next .turbo coverage node_modules next-env.d.ts tsconfig.tsbuildinfo",
     "coverage": "vitest run --coverage",
     "dev": "next dev --turbopack",
     "lint": "next lint",

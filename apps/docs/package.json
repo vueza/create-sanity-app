@@ -35,7 +35,7 @@
   "scripts": {
     "build": "storybook build",
     "check-types": "tsc",
-    "clean": "rm -rf .next .turbo node_modules storybook-static",
+    "clean": "rm -rf .next .turbo coverage node_modules storybook-static",
     "coverage": "vitest run --coverage",
     "dev": "storybook dev -p 6006 --no-open",
     "test": "vitest",
