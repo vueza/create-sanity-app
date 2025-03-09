@@ -6,6 +6,7 @@ export default {
     "pnpm-lock.yaml",
     "tsconfig.tsbuildinfo",
     "storybook-static",
+    "coverage",
   ],
   words: [
     "cspell",

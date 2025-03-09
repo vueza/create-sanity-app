@@ -18,6 +18,7 @@
     "build": "turbo build",
     "check-types": "turbo check-types",
     "clean": "turbo clean",
+    "coverage": "turbo coverage",
     "dev": "turbo dev",
     "editorconfig-checker": "editorconfig-checker",
     "lint": "biome check --error-on-warnings",

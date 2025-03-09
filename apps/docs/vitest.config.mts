@@ -26,5 +26,9 @@ export default defineConfig({
       },
     ],
     watch: false,
+    coverage: {
+      reporter: ["text", "json", "html"],
+      include: ["src/**/*"],
+    },
   },
 });

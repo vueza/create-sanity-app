@@ -8,5 +8,9 @@ export default defineConfig({
     environment: "jsdom",
     passWithNoTests: true,
     watch: false,
+    coverage: {
+      reporter: ["text", "json", "html"],
+      include: ["src/**/*"],
+    },
   },
 });
