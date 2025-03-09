@@ -19,5 +19,34 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     children: "Button",
+    color: "primary",
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    children: "Button",
+    color: "secondary",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: "Button",
+    size: "sm",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: "Button",
+    size: "md",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    children: "Button",
+    size: "lg",
   },
 };

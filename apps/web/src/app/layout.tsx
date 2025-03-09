@@ -3,6 +3,7 @@ import { draftMode } from "next/headers";
 import type { ReactNode } from "react";
 import { DraftModeButton } from "../components/draft-mode-button";
 import { SanityLive } from "../sanity/live";
+import "@company/config-tailwind/app.css";
 
 export default async function RootLayout({
   children,

@@ -12,7 +12,8 @@
       "coverage",
       "dist",
       ".sanity",
-      "sanity.types.ts"
+      "sanity.types.ts",
+      "app.css"
     ]
   },
   "formatter": {
@@ -26,6 +27,9 @@
       "correctness": {
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
+      },
+      "suspicious": {
+        "noReactSpecificProps": "off"
       }
     }
   },
