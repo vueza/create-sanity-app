@@ -13,6 +13,7 @@ export const person = defineType({
       type: "string",
       validation: (rule) => rule.required(),
     }),
+
     defineField({
       name: "lastName",
       title: "Last Name",

@@ -18,6 +18,7 @@ export const post = compose(
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: "slug",
       title: "Slug",
@@ -28,11 +29,18 @@ export const post = compose(
       },
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: "author",
       title: "Author",
       type: "reference",
       to: [{ type: "person" }],
+    }),
+
+    defineField({
+      name: "content",
+      title: "Content",
+      type: "content",
     }),
   ],
 });

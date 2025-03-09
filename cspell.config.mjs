@@ -23,5 +23,6 @@ export default {
     "autodocs",
     "groq",
     "stega",
+    "portabletext",
   ],
 };

@@ -125,6 +125,76 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
+export type LinkRequired = {
+  _type: "linkRequired";
+  children: string;
+  type: "href" | "page" | "post";
+  href?: string;
+  page?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  post?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "post";
+  };
+};
+
+export type Link = {
+  _type: "link";
+  children?: string;
+  type?: "href" | "page" | "post";
+  href?: string;
+  page?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  post?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "post";
+  };
+};
+
+export type Content = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+  listItem?: "bullet" | "number";
+  markDefs?: Array<{
+    type: "href" | "page" | "post";
+    href?: string;
+    page?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "page";
+    };
+    post?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "post";
+    };
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+}>;
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -139,6 +209,7 @@ export type Post = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: "person";
   };
+  content: Content;
   seo: Seo;
 };
 
@@ -305,7 +376,7 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | LinkRequired | Link | Content | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-page-query.ts
 // Variable: getPageQuery
@@ -316,9 +387,41 @@ export type GetPageQueryResult = {
 
 // Source: ./src/queries/get-post-query.ts
 // Variable: getPostQuery
-// Query: *[_type == 'post' && slug.current == $slug][0] {    title,  }
+// Query: *[_type == 'post' && slug.current == $slug][0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},  }
 export type GetPostQueryResult = {
   title: string;
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs: Array<{
+      type: "href" | "page" | "post";
+      href: string | "";
+      page?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "page";
+      };
+      post?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "post";
+      };
+      _type: "link";
+      _key: string;
+      children: null;
+    }> | null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
 } | null;
 
 // Query TypeMap
@@ -326,6 +429,6 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == 'page' && slug.current == $slug][0] {\n    title,\n  }\n": GetPageQueryResult;
-    "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n  }\n": GetPostQueryResult;
+    "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n  }\n": GetPostQueryResult;
   }
 }
