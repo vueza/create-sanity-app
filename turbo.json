@@ -1,7 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalEnv": ["SANITY_STUDIO_PROJECT_ID", "SANITY_STUDIO_DATASET"],
+  "globalEnv": [
+    "NEXT_PUBLIC_SANITY_API_VERSION",
+    "NEXT_PUBLIC_SANITY_DATASET",
+    "NEXT_PUBLIC_SANITY_PROJECT_ID",
+    "NEXT_PUBLIC_SANITY_STUDIO_URL",
+    "SANITY_API_READ_TOKEN",
+    "SANITY_STUDIO_PROJECT_ID",
+    "SANITY_STUDIO_DATASET",
+    "SANITY_STUDIO_STUDIO_HOST"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

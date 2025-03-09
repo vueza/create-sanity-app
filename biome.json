@@ -60,6 +60,16 @@
           }
         }
       }
+    },
+    {
+      "include": ["env.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useNamingConvention": "off"
+          }
+        }
+      }
     }
   ]
 }

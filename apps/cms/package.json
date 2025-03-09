@@ -4,24 +4,34 @@
   "dependencies": {
     "@sanity/icons": "3.7.0",
     "@sanity/vision": "3.78.1",
+    "groq": "3.78.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "sanity": "3.78.1",
     "styled-components": "6.1.15"
   },
   "devDependencies": {
+    "@sanity/assist": "3.2.0",
+    "@sanity/client": "6.28.3",
+    "@t3-oss/env-core": "0.12.0",
     "@types/react": "19.0.10",
     "chokidar-cli": "3.0.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "zod": "3.24.2"
+  },
+  "exports": {
+    "./queries/get-page-query": "./src/queries/get-page-query.ts",
+    "./types": "./sanity.types.ts"
   },
   "scripts": {
     "build": "sanity build",
     "check-types": "tsc",
     "clean": "rm -rf .sanity .turbo dist node_modules",
+    "deploy": "sanity deploy",
     "dev": "sanity dev",
     "prebuild": "pnpm schema-extract && pnpm typegen-generate",
     "predev": "pnpm schema-extract && pnpm typegen-generate",
-    "schema-extract": "sanity schema extract",
+    "schema-extract": "sanity schema extract --enforce-required-fields",
     "start": "sanity start",
     "typegen-generate": "sanity typegen generate",
     "watch": "chokidar 'src/**' -c 'pnpm schema-extract && pnpm typegen-generate'"

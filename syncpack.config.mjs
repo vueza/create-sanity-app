@@ -9,4 +9,11 @@ export default {
       range: "",
     },
   ],
+  versionGroups: [
+    {
+      dependencies: ["$LOCAL"],
+      dependencyTypes: ["dev", "prod"],
+      pinVersion: "workspace:*",
+    },
+  ],
 };

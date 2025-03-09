@@ -21,5 +21,7 @@ export default {
     "nextjs",
     "biomejs",
     "autodocs",
+    "groq",
+    "stega",
   ],
 };
