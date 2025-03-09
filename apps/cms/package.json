@@ -21,8 +21,7 @@
     "zod": "3.24.2"
   },
   "exports": {
-    "./queries/get-page-query": "./src/queries/get-page-query.ts",
-    "./queries/get-post-query": "./src/queries/get-post-query.ts",
+    "./queries/*": "./src/queries/*.ts",
     "./types": "./sanity.types.ts"
   },
   "scripts": {
