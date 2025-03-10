@@ -174,7 +174,7 @@ jobs:
       - name: Install playwright
         run: |
           cd apps/docs
-          pnpm exec playwright install
+          npx playwright install
 
       - name: Test
         run: pnpm test
