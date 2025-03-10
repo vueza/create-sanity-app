@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from "react";
 import { type VariantProps, tv } from "tailwind-variants";
 
 const button = tv({
-  base: "font-medium rounded-full active:opacity-80",
+  base: "rounded-full font-medium active:opacity-80",
   variants: {
     color: {
       primary: "bg-black text-white",

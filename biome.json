@@ -30,6 +30,16 @@
       },
       "suspicious": {
         "noReactSpecificProps": "off"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "attributes": ["className"],
+            "functions": ["twMerge", "tv"]
+          }
+        }
       }
     }
   },
