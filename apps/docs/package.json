@@ -30,6 +30,7 @@
     "@vitest/browser": "3.0.8",
     "@vitest/coverage-v8": "3.0.8",
     "@vitest/ui": "3.0.8",
+    "next": "15.2.1",
     "playwright": "1.51.0",
     "storybook": "8.6.4",
     "storybook-dark-mode": "4.0.2",

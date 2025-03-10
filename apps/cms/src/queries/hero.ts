@@ -4,4 +4,5 @@ export const hero = /* groq */ `{
   title,
   description,
   link ${link}
+  image,
 },`;

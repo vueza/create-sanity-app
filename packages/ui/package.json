@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "dependencies": {
     "@portabletext/react": "3.2.1",
+    "@sanity/image-url": "1.1.0",
     "next": "15.2.1",
+    "next-sanity": "9.9.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwind-merge": "3.0.2",

@@ -24,6 +24,7 @@ const config: StorybookConfig = {
     name: getAbsolutePath("@storybook/experimental-nextjs-vite"),
     options: {},
   },
+  staticDirs: ["../public"],
 };
 
 export default config;

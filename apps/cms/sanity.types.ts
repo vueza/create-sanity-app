@@ -39,22 +39,6 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
 export type SanityFileAsset = {
   _id: string;
   _type: "sanity.fileAsset";
@@ -77,52 +61,11 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageAsset = {
-  _id: string;
-  _type: "sanity.imageAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  metadata?: SanityImageMetadata;
-  source?: SanityAssetSourceData;
-};
-
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
   lng?: number;
   alt?: number;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
 };
 
 export type PageBuilder = Array<{
@@ -150,11 +93,106 @@ export type Link = {
   };
 };
 
+export type ImageWithAlt = {
+  _type: "imageWithAlt";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type SanityImageAsset = {
+  _id: string;
+  _type: "sanity.imageAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  metadata?: SanityImageMetadata;
+  source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
+};
+
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
+};
+
 export type Hero = {
   _type: "hero";
   title: string;
   description: string;
   link: LinkRequired;
+  image: {
+    asset: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "imageWithAltRequired";
+  };
+};
+
+export type ImageWithAltRequired = {
+  _type: "imageWithAltRequired";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
 };
 
 export type LinkRequired = {
@@ -395,11 +433,11 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | PageBuilder | Link | Hero | LinkRequired | Heading | Content | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Link | ImageWithAlt | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Hero | ImageWithAltRequired | LinkRequired | Heading | Content | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-page-query.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},},  _type == "heading" => {  heading,},},  }
+// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},  }
 export type GetPageQueryResult = {
   _id: string;
   _type: "page";
@@ -416,6 +454,18 @@ export type GetPageQueryResult = {
     link: {
       children: string;
       href: string | "";
+    };
+    image: {
+      asset: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "imageWithAltRequired";
     };
   }>;
 } | null;
@@ -463,7 +513,7 @@ export type GetPostQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n  }\n": GetPageQueryResult;
     "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n  }\n": GetPostQueryResult;
   }
 }

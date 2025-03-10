@@ -25,6 +25,13 @@ export const hero = defineType({
       type: "linkRequired",
       validation: (Rule) => Rule.required(),
     }),
+
+    defineField({
+      name: "image",
+      title: "Image",
+      type: "imageWithAltRequired",
+      validation: (Rule) => Rule.required().assetRequired(),
+    }),
   ],
   validation: (Rule) => Rule.required(),
 });

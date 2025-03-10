@@ -24,5 +24,6 @@ export default {
     "groq",
     "stega",
     "portabletext",
+    "hotspot",
   ],
 };
