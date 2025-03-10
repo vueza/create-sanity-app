@@ -2,6 +2,7 @@
   "name": "@company/ui",
   "version": "0.0.0",
   "dependencies": {
+    "@company/internationalization": "workspace:*",
     "@portabletext/react": "3.2.1",
     "@sanity/image-url": "1.1.0",
     "next": "15.2.1",

@@ -1,0 +1,8 @@
+{
+  "extends": "@company/config-typescript/react.json",
+  "compilerOptions": {
+    "resolveJsonModule": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
