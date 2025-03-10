@@ -4,6 +4,7 @@
   "dependencies": {
     "@company/cms": "workspace:*",
     "@company/ui": "workspace:*",
+    "@next/bundle-analyzer": "15.2.1",
     "@t3-oss/env-nextjs": "0.12.0",
     "next": "15.2.1",
     "next-sanity": "9.9.0",
@@ -30,6 +31,7 @@
   },
   "scripts": {
     "build": "next build",
+    "build:analyze": "ANALYZE=true pnpm build",
     "check-types": "tsc",
     "clean": "rm -rf .next .turbo coverage node_modules next-env.d.ts tsconfig.tsbuildinfo",
     "coverage": "vitest run --coverage",
