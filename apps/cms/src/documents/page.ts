@@ -29,5 +29,11 @@ export const page = compose(
       },
       validation: (Rule) => Rule.required(),
     }),
+
+    defineField({
+      name: "pageBuilder",
+      title: "Page Builder",
+      type: "pageBuilder",
+    }),
   ],
 });

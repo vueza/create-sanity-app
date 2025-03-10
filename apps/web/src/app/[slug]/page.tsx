@@ -1,5 +1,6 @@
 import { getPageQuery } from "@company/cms/queries/get-page-query";
 import { notFound } from "next/navigation";
+import { PageBuilder } from "../../components/page-builder";
 import { sanityFetch } from "../../sanity/live";
 
 type Props = {
@@ -14,5 +15,10 @@ export default async function Page(props: Props) {
     notFound();
   }
 
-  return <div>{data.title}</div>;
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <PageBuilder page={data} />
+    </div>
+  );
 }

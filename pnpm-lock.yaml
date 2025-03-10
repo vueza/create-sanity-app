@@ -284,6 +284,9 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(tailwindcss@4.0.12)
     devDependencies:
+      '@company/cms':
+        specifier: workspace:*
+        version: link:../../apps/cms
       '@company/config-typescript':
         specifier: workspace:*
         version: link:../config-typescript

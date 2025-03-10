@@ -125,6 +125,38 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
+export type PageBuilder = Array<{
+  _key: string;
+} & Hero | {
+  _key: string;
+} & Heading>;
+
+export type Link = {
+  _type: "link";
+  children?: string;
+  type?: "href" | "page" | "post";
+  href?: string;
+  page?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  post?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "post";
+  };
+};
+
+export type Hero = {
+  _type: "hero";
+  title: string;
+  description: string;
+  link: LinkRequired;
+};
+
 export type LinkRequired = {
   _type: "linkRequired";
   children: string;
@@ -144,23 +176,9 @@ export type LinkRequired = {
   };
 };
 
-export type Link = {
-  _type: "link";
-  children?: string;
-  type?: "href" | "page" | "post";
-  href?: string;
-  page?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
-  post?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post";
-  };
+export type Heading = {
+  _type: "heading";
+  heading: string;
 };
 
 export type Content = Array<{
@@ -231,6 +249,7 @@ export type Page = {
   _rev: string;
   title: string;
   slug: Slug;
+  pageBuilder: PageBuilder;
   seo: Seo;
 };
 
@@ -376,13 +395,29 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | LinkRequired | Link | Content | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | SanityAssetSourceData | PageBuilder | Link | Hero | LinkRequired | Heading | Content | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-page-query.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0] {    title,  }
+// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},},  _type == "heading" => {  heading,},},  }
 export type GetPageQueryResult = {
+  _id: string;
+  _type: "page";
   title: string;
+  pageBuilder: Array<{
+    _type: "heading";
+    _key: string;
+    heading: string;
+  } | {
+    _type: "hero";
+    _key: string;
+    title: string;
+    description: string;
+    link: {
+      children: string;
+      href: string | "";
+    };
+  }>;
 } | null;
 
 // Source: ./src/queries/get-post-query.ts
@@ -428,7 +463,7 @@ export type GetPostQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    title,\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n  }\n": GetPageQueryResult;
     "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n  }\n": GetPostQueryResult;
   }
 }

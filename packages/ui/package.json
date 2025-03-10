@@ -10,6 +10,7 @@
     "tailwind-variants": "1.0.0"
   },
   "devDependencies": {
+    "@company/cms": "workspace:*",
     "@company/config-typescript": "workspace:*",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
