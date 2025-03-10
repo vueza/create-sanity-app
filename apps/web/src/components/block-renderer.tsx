@@ -1,10 +1,10 @@
-import type { GetPageQueryResult } from "@company/cms/types";
+import type { GetPageResult } from "@company/cms/types";
 import { Heading } from "@company/ui/components/heading";
 import { Hero } from "@company/ui/components/hero";
 import { type ComponentType, createElement } from "react";
 import { dataAttr } from "../sanity/data-attr";
 
-export type Page = NonNullable<GetPageQueryResult>;
+export type Page = NonNullable<GetPageResult>;
 
 const Blocks: Record<
   Page["pageBuilder"][number]["_type"],

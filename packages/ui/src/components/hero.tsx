@@ -1,11 +1,11 @@
-import type { GetPageQueryResult } from "@company/cms/types";
+import type { GetPageResult } from "@company/cms/types";
 import { Image } from "./image";
 import { Link } from "./link";
 
 interface HeroProps
   extends Omit<
     Extract<
-      NonNullable<GetPageQueryResult>["pageBuilder"][number],
+      NonNullable<GetPageResult>["pageBuilder"][number],
       { _type: "hero" }
     >,
     "_type" | "_key"

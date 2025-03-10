@@ -1,9 +1,9 @@
-import type { GetPageQueryResult } from "@company/cms/types";
+import type { GetPageResult } from "@company/cms/types";
 
 interface HeadingProps
   extends Omit<
     Extract<
-      NonNullable<GetPageQueryResult>["pageBuilder"][number],
+      NonNullable<GetPageResult>["pageBuilder"][number],
       { _type: "heading" }
     >,
     "_type" | "_key"

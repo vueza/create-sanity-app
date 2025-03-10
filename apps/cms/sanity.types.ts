@@ -435,10 +435,10 @@ export type SanityAssistSchemaTypeField = {
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Link | ImageWithAlt | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Hero | ImageWithAltRequired | LinkRequired | Heading | Content | Post | Person | Page | Seo | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/queries/get-page-query.ts
-// Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
-export type GetPageQueryResult = {
+// Source: ./src/queries/get-page.ts
+// Variable: getPage
+// Query: *[_type == 'page' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
+export type GetPageResult = {
   _id: string;
   _type: "page";
   title: string;
@@ -474,10 +474,17 @@ export type GetPageQueryResult = {
   };
 } | null;
 
-// Source: ./src/queries/get-post-query.ts
-// Variable: getPostQuery
-// Query: *[_type == 'post' && slug.current == $slug][0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},    seo {  title,  description,},  }
-export type GetPostQueryResult = {
+// Source: ./src/queries/get-pages.ts
+// Variable: getPages
+// Query: *[_type == "page" && defined(slug.current)] |  order(date desc, _updatedAt desc) {    "slug": slug.current  }
+export type GetPagesResult = Array<{
+  slug: string;
+}>;
+
+// Source: ./src/queries/get-post.ts
+// Variable: getPost
+// Query: *[_type == 'post' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},    seo {  title,  description,},  }
+export type GetPostResult = {
   title: string;
   content: Array<{
     children?: Array<{
@@ -517,11 +524,20 @@ export type GetPostQueryResult = {
   };
 } | null;
 
+// Source: ./src/queries/get-posts.ts
+// Variable: getPosts
+// Query: *[_type == "post" && defined(slug.current)] |  order(date desc, _updatedAt desc) {    "slug": slug.current  }
+export type GetPostsResult = Array<{
+  slug: string;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageQueryResult;
-    "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageResult;
+    "\n  *[_type == \"page\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPagesResult;
+    "\n  *[_type == 'post' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostResult;
+    "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsResult;
   }
 }

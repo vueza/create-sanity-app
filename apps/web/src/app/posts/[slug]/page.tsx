@@ -1,4 +1,5 @@
-import { getPostQuery } from "@company/cms/queries/get-post-query";
+import { getPost } from "@company/cms/queries/get-post";
+import { getPosts } from "@company/cms/queries/get-posts";
 import { Content } from "@company/ui/components/content";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -8,10 +9,20 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  const { data } = await sanityFetch({
+    query: getPosts,
+    perspective: "published",
+    stega: false,
+  });
+
+  return data;
+}
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const { data: page } = await sanityFetch({
-    query: getPostQuery,
+    query: getPost,
     params,
     stega: false,
   });
@@ -24,7 +35,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function Post(props: Props) {
   const params = await props.params;
-  const { data } = await sanityFetch({ query: getPostQuery, params });
+  const { data } = await sanityFetch({ query: getPost, params });
 
   if (!data) {
     notFound();
