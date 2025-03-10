@@ -19,6 +19,7 @@ export const DraftModeButton = () => {
         await disableDraftMode();
         router.refresh();
       }}
+      className="fixed bottom-4 right-4 text-white bg-gray-800 rounded-lg hover:bg-gray-700 px-4 py-2" // editorconfig-checker-disable-line
     >
       Disable draft mode
     </button>
