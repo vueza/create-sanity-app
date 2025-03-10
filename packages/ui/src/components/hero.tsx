@@ -16,6 +16,6 @@ export const Hero = ({ title, description, link, image }: HeroProps) => (
     <h2>{title}</h2>
     <p>{description}</p>
     <Link {...link} />
-    <Image image={image} width={350} height={350} />
+    <Image image={image} width={350} height={350} priority={true} />
   </div>
 );

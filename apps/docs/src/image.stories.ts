@@ -26,5 +26,6 @@ export const Default: Story = {
     },
     width: 350,
     height: 350,
+    priority: true,
   },
 };
