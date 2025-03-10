@@ -1,5 +1,6 @@
 import { defineQuery } from "groq";
 import { pageBuilder } from "./page-builder";
+import { seo } from "./seo";
 
 export const getPageQuery = defineQuery(`
   *[_type == 'page' && slug.current == $slug][0] {
@@ -7,5 +8,6 @@ export const getPageQuery = defineQuery(`
     _type,
     title,
     ${pageBuilder}
+    ${seo}
   }
 `);

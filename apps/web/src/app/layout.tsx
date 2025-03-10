@@ -5,6 +5,14 @@ import { DraftModeButton } from "../components/draft-mode-button";
 import { SanityLive } from "../sanity/live";
 import "@company/config-tailwind/app.css";
 import { Layout } from "@company/ui/components/layout";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Company",
+    default: "Company",
+  },
+};
 
 export default async function RootLayout({
   children,

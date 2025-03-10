@@ -437,7 +437,7 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-page-query.ts
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},  }
+// Query: *[_type == 'page' && slug.current == $slug][0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
 export type GetPageQueryResult = {
   _id: string;
   _type: "page";
@@ -468,11 +468,15 @@ export type GetPageQueryResult = {
       _type: "imageWithAltRequired";
     };
   }>;
+  seo: {
+    title: string;
+    description: string;
+  };
 } | null;
 
 // Source: ./src/queries/get-post-query.ts
 // Variable: getPostQuery
-// Query: *[_type == 'post' && slug.current == $slug][0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},  }
+// Query: *[_type == 'post' && slug.current == $slug][0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},    seo {  title,  description,},  }
 export type GetPostQueryResult = {
   title: string;
   content: Array<{
@@ -507,13 +511,17 @@ export type GetPostQueryResult = {
     _type: "block";
     _key: string;
   }>;
+  seo: {
+    title: string;
+    description: string;
+  };
 } | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n  }\n": GetPageQueryResult;
-    "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n  }\n": GetPostQueryResult;
+    "\n  *[_type == 'page' && slug.current == $slug][0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'post' && slug.current == $slug][0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostQueryResult;
   }
 }
