@@ -36,7 +36,6 @@
     "clean": "rm -rf .next .turbo coverage node_modules next-env.d.ts tsconfig.tsbuildinfo",
     "coverage": "vitest run --coverage",
     "dev": "next dev --turbopack",
-    "lint": "next lint",
     "start": "next start",
     "test": "vitest",
     "ui": "vitest ui"

@@ -27,7 +27,7 @@
   "scripts": {
     "build": "sanity build",
     "check-types": "tsc",
-    "clean": "rm -rf .sanity .turbo dist node_modules",
+    "clean": "rm -rf .sanity .turbo dist node_modules tsconfig.tsbuildinfo",
     "deploy": "sanity deploy",
     "dev": "sanity dev",
     "prebuild": "pnpm schema-extract && pnpm typegen-generate",
