@@ -3,6 +3,7 @@ import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
+import { document } from "./src/document";
 import { env } from "./src/env";
 import { presentation } from "./src/presentation";
 import { structure } from "./src/structure";
@@ -26,4 +27,5 @@ export default defineConfig({
   schema: {
     types,
   },
+  document,
 });
