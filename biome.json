@@ -69,7 +69,6 @@
             "noNamespaceImport": "off"
           },
           "correctness": {
-            "useImportExtensions": "off",
             "noNodejsModules": "off"
           }
         }
