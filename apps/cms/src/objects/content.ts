@@ -1,4 +1,5 @@
 import {
+  type ArrayDefinition,
   type BlockMarksDefinition,
   defineArrayMember,
   defineField,
@@ -67,17 +68,38 @@ const annotations: BlockMarksDefinition["annotations"] = [
   },
 ];
 
-export const content = defineType({
+const coreBlocks: ReturnType<typeof defineArrayMember>[] = [
+  defineArrayMember({
+    type: "block",
+    marks: {
+      annotations,
+    },
+  }),
+
+  defineArrayMember({
+    type: "imageWithAltRequired",
+    title: "Image",
+    validation: (Rule) => Rule.required().assetRequired(),
+  }),
+];
+
+const availableBlocks: ReturnType<typeof defineArrayMember>[] = [];
+
+const sharedTypeOptions: Omit<ArrayDefinition, "of"> = {
   title: "Content",
   name: "content",
   type: "array",
-  of: [
-    defineArrayMember({
-      type: "block",
-      marks: {
-        annotations,
-      },
-    }),
-  ],
   validation: (Rule) => Rule.required(),
+};
+
+export const content = defineType({
+  ...sharedTypeOptions,
+  of: [...coreBlocks, ...availableBlocks],
 });
+
+export const defineFieldContent = (of: string[]) => {
+  return defineField({
+    ...sharedTypeOptions,
+    of: [...coreBlocks, ...of.map((type) => defineArrayMember({ type }))],
+  });
+};

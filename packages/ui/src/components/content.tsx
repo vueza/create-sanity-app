@@ -1,13 +1,38 @@
-import { PortableText, type PortableTextProps } from "@portabletext/react";
+import type { GetPostResult } from "@company/cms/types";
+import {
+  PortableText,
+  type PortableTextProps,
+  type PortableTextTypeComponentProps,
+} from "@portabletext/react";
+import { Image } from "./image";
 import { Link } from "./link";
 
 interface ContentProps {
   value: PortableTextProps["value"];
 }
 
+type ImageWithAltBlock = Extract<
+  NonNullable<GetPostResult>["content"][number],
+  { _type: "imageWithAltRequired" }
+>;
+
 export const Content = ({ value }: ContentProps) => (
   <PortableText
     components={{
+      types: {
+        imageWithAltRequired: ({
+          value,
+        }: PortableTextTypeComponentProps<ImageWithAltBlock>) => {
+          return (
+            <Image
+              image={value}
+              className="h-auto w-full object-cover"
+              width={1280}
+              height={720}
+            />
+          );
+        },
+      },
       marks: {
         link: ({ children, value: { href } }) => (
           <Link href={href} className="text-blue-500 hover:text-blue-700">

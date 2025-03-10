@@ -249,7 +249,9 @@ export type Content = Array<{
   level?: number;
   _type: "block";
   _key: string;
-}>;
+} | {
+  _key: string;
+} & ImageWithAltRequired>;
 
 export type Post = {
   _id: string;
@@ -517,6 +519,19 @@ export type GetPostResult = {
     level?: number;
     _type: "block";
     _key: string;
+  } | {
+    _key: string;
+    _type: "imageWithAltRequired";
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    markDefs: null;
   }>;
   seo: {
     title: string;
