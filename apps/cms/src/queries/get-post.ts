@@ -1,6 +1,6 @@
 import { defineQuery } from "groq";
-import { content } from "./content";
-import { seo } from "./seo";
+import { content } from "../fragments/content";
+import { seo } from "../fragments/seo";
 
 export const getPost = defineQuery(`
   *[_type == 'post' && slug.current == $slug] |

@@ -1,6 +1,6 @@
 import { defineQuery } from "groq";
-import { pageBuilder } from "./page-builder";
-import { seo } from "./seo";
+import { pageBuilder } from "../fragments/page-builder";
+import { seo } from "../fragments/seo";
 
 export const getPage = defineQuery(`
   *[_type == 'page' && slug.current == $slug] |
