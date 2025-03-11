@@ -693,6 +693,15 @@ export type GetPostsSlugsResult = Array<{
   slug: string;
 }>;
 
+// Source: ./src/queries/get-posts.ts
+// Variable: getPosts
+// Query: *[_type == "post" && defined(slug.current)] |  order(date desc, _updatedAt desc) {    _id,    title,    "href": "/post/" + slug.current,  }
+export type GetPostsResult = Array<{
+  _id: string;
+  title: string;
+  href: string;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -705,5 +714,6 @@ declare module "@sanity/client" {
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"author\": *[_type == \"author\" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {\n    firstName,\n    lastName,\n  }\n}": GetPostsByAuthorSlugResult;
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsSlugsResult;
+    "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  }\n": GetPostsResult;
   }
 }
