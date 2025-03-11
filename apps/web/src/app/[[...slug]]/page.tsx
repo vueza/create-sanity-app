@@ -6,7 +6,7 @@ import { PageBuilder } from "../../components/page-builder";
 import { sanityFetch } from "../../sanity/live";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string[] }>;
 };
 
 export async function generateStaticParams() {
@@ -16,14 +16,17 @@ export async function generateStaticParams() {
     stega: false,
   });
 
-  return data;
+  return data.map((page) => ({
+    params: { slug: page.slug.split("/") },
+  }));
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
+  const slug = params.slug ? params.slug.join("/") : "/";
   const { data: page } = await sanityFetch({
     query: getPage,
-    params,
+    params: { slug },
     stega: false,
   });
 
@@ -35,7 +38,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 export default async function Page(props: Props) {
   const params = await props.params;
-  const { data } = await sanityFetch({ query: getPage, params });
+  const slug = params.slug ? params.slug.join("/") : "/";
+  const { data } = await sanityFetch({ query: getPage, params: { slug } });
 
   if (!data) {
     notFound();

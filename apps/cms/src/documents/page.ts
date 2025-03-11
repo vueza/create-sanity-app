@@ -3,6 +3,8 @@ import { defineField, defineType } from "sanity";
 import { withSeo } from "../hoc/with-seo";
 import { compose } from "../utils/compose";
 
+const slugRegex = /^[a-z]+(-[a-z]+|\/[a-z]+)*$/;
+
 export const page = compose(
   defineType,
   withSeo,
@@ -27,7 +29,22 @@ export const page = compose(
         source: "title",
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug) => {
+          if (!slug?.current) {
+            return "Required";
+          }
+
+          if (slug.current === "/") {
+            return true;
+          }
+
+          if (!slugRegex.test(slug.current)) {
+            return "Slug must be lowercase letters, dashes, and slashes.";
+          }
+
+          return true;
+        }),
     }),
 
     defineField({

@@ -38,6 +38,17 @@ export const presentation: PresentationPluginOptions = {
             return;
           }
 
+          if (document.slug === "/") {
+            return {
+              locations: [
+                {
+                  title: document.title,
+                  href: "/",
+                },
+              ],
+            };
+          }
+
           return {
             locations: [
               {
