@@ -3,6 +3,7 @@
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
+    "@turbo/gen": "2.4.4",
     "cspell": "8.17.5",
     "editorconfig-checker": "6.0.1",
     "lefthook": "1.11.3",

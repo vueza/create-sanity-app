@@ -5,7 +5,13 @@
   "IgnoreDefaults": false,
   "SpacesAfterTabs": false,
   "NoColor": false,
-  "Exclude": ["package.json", "pnpm-lock.yaml", "sanity.types.ts", "ci.yaml"],
+  "Exclude": [
+    "package.json",
+    "pnpm-lock.yaml",
+    "sanity.types.ts",
+    "ci.yaml",
+    "*.hbs"
+  ],
   "AllowedContentTypes": [],
   "PassedFiles": [],
   "Disable": {

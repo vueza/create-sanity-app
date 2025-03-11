@@ -49,6 +49,7 @@
         "*.config.mjs",
         "*.config.mts",
         "*.config.ts",
+        "config.ts",
         "*.cli.ts",
         "apps/web/src/app/**"
       ],
