@@ -2,6 +2,7 @@ import { DocumentTextIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { withSeo } from "../hoc/with-seo";
 import { compose } from "../utils/compose";
+import { isUnique } from "../utils/is-unique";
 
 export const post = compose(
   defineType,
@@ -26,6 +27,7 @@ export const post = compose(
       options: {
         source: "title",
         maxLength: 96,
+        isUnique,
       },
       validation: (Rule) => Rule.required(),
     }),

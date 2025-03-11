@@ -2,6 +2,7 @@ import { DocumentIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 import { withSeo } from "../hoc/with-seo";
 import { compose } from "../utils/compose";
+import { isUnique } from "../utils/is-unique";
 
 const slugRegex = /^[a-z]+(-[a-z]+|\/[a-z]+)*$/;
 
@@ -28,6 +29,7 @@ export const page = compose(
       options: {
         source: "title",
         maxLength: 96,
+        isUnique,
       },
       validation: (Rule) =>
         Rule.required().custom((slug) => {
