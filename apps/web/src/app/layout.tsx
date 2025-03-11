@@ -23,6 +23,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Company" />
+      </head>
       <body className="flex min-h-screen flex-col">
         <Layout>{children}</Layout>
 

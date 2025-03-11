@@ -25,5 +25,6 @@ export default {
     "stega",
     "portabletext",
     "hotspot",
+    "rgba",
   ],
 };
