@@ -1,5 +1,5 @@
 import { getPage } from "@company/cms/queries/get-page";
-import { getPages } from "@company/cms/queries/get-pages";
+import { getPagesSlugs } from "@company/cms/queries/get-pages-slugs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageBuilder } from "../../components/page-builder";
@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
-    query: getPages,
+    query: getPagesSlugs,
     perspective: "published",
     stega: false,
   });

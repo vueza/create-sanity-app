@@ -1,4 +1,4 @@
-import { getCategories } from "@company/cms/queries/get-categories";
+import { getCategoriesSlugs } from "@company/cms/queries/get-categories-slugs";
 import { getPostsByCategorySlug } from "@company/cms/queries/get-posts-by-category";
 import { Link } from "@company/ui/components/link";
 import type { Metadata } from "next";
@@ -11,7 +11,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const { data } = await sanityFetch({
-    query: getCategories,
+    query: getCategoriesSlugs,
     perspective: "published",
     stega: false,
   });

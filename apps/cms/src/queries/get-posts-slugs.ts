@@ -1,7 +1,7 @@
 import { defineQuery } from "groq";
 
-export const getPages = defineQuery(`
-  *[_type == "page" && defined(slug.current)] |
+export const getPostsSlugs = defineQuery(`
+  *[_type == "post" && defined(slug.current)] |
   order(date desc, _updatedAt desc) {
     "slug": slug.current
   }
