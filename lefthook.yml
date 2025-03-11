@@ -2,7 +2,7 @@ pre-push:
   parallel: true
   jobs:
     - name: packages audit
-      run: pnpm audit
+      run: pnpm audit --audit-level high
 
     - name: validate branch name
       run: npx validate-branch-name
