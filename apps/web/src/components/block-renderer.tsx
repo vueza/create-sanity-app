@@ -1,4 +1,5 @@
 import type { GetPageResult } from "@company/cms/types";
+import { Content } from "@company/ui/components/content";
 import { Heading } from "@company/ui/components/heading";
 import { Hero } from "@company/ui/components/hero";
 import { type ComponentType, createElement } from "react";
@@ -11,6 +12,7 @@ const Blocks: Record<
   // biome-ignore lint/suspicious/noExplicitAny: TODO: Fix types
   ComponentType<any>
 > = {
+  contentObject: Content,
   hero: Hero,
   heading: Heading,
 };

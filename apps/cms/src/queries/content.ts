@@ -1,6 +1,6 @@
 import { link } from "./link";
 
-export const content = /* groq */ `content[] {
+export const content = /* groq */ `{
   ...,
   markDefs[] {
     ...,

@@ -3,6 +3,7 @@ import { page } from "./documents/page";
 import { person } from "./documents/person";
 import { post } from "./documents/post";
 import { content } from "./objects/content";
+import { contentObject } from "./objects/content-object";
 import { heading } from "./objects/heading";
 import { hero } from "./objects/hero";
 import { imageWithAlt } from "./objects/image-with-alt";
@@ -19,6 +20,7 @@ const documents: SchemaTypeDefinition[] = [page, person, post];
 
 const objects: SchemaTypeDefinition[] = [
   content,
+  contentObject,
   heading,
   hero,
   imageWithAlt,

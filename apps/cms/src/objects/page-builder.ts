@@ -5,7 +5,10 @@ import {
   defineType,
 } from "sanity";
 
-const coreBlocks = [defineArrayMember({ type: "hero" })];
+const coreBlocks = [
+  defineArrayMember({ type: "contentObject" }),
+  defineArrayMember({ type: "hero" }),
+];
 
 const availableBlocks = [defineArrayMember({ type: "heading" })];
 

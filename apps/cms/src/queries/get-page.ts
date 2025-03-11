@@ -8,7 +8,7 @@ export const getPage = defineQuery(`
     _id,
     _type,
     title,
-    ${pageBuilder}
+    pageBuilder[] ${pageBuilder}
     ${seo}
   }
 `);
