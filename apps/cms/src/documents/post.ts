@@ -36,7 +36,14 @@ export const post = compose(
       name: "author",
       title: "Author",
       type: "reference",
-      to: [{ type: "person" }],
+      to: [{ type: "author" }],
+    }),
+
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "reference",
+      to: [{ type: "category" }],
     }),
 
     defineField({

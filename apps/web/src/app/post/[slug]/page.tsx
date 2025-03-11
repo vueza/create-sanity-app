@@ -21,15 +21,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const { data: page } = await sanityFetch({
+  const { data } = await sanityFetch({
     query: getPost,
     params,
     stega: false,
   });
 
   return {
-    title: page?.seo.title,
-    description: page?.seo.title,
+    title: data?.seo.title,
+    description: data?.seo.title,
   };
 }
 

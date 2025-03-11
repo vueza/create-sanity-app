@@ -7,8 +7,17 @@ export const structure: StructureToolOptions = {
       .title("Content")
       .items([
         S.documentTypeListItem("page"),
-        S.documentTypeListItem("post"),
-        S.documentTypeListItem("person"),
+        S.listItem()
+          .title("Post")
+          .child(
+            S.list()
+              .title("Post")
+              .items([
+                S.documentTypeListItem("post"),
+                S.documentTypeListItem("author"),
+                S.documentTypeListItem("category"),
+              ]),
+          ),
         S.listItem()
           .title("Settings")
           .child(S.document().schemaType("settings").documentId("settings"))

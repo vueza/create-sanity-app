@@ -1,9 +1,10 @@
 import { UserIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { isUnique } from "../utils/is-unique";
 
-export const person = defineType({
-  name: "person",
-  title: "Person",
+export const author = defineType({
+  name: "author",
+  title: "Author",
   icon: UserIcon,
   type: "document",
   fields: [
@@ -19,6 +20,18 @@ export const person = defineType({
       title: "Last Name",
       type: "string",
       validation: (rule) => rule.required(),
+    }),
+
+    defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: (doc) => `${doc.firstName} ${doc.lastName}`,
+        maxLength: 96,
+        isUnique,
+      },
+      validation: (Rule) => Rule.required(),
     }),
   ],
 });

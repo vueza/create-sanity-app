@@ -19,8 +19,16 @@ export const presentation: PresentationPluginOptions = {
         filter: `_type == "page" && slug.current == $slug || _id == $slug`,
       },
       {
-        route: "/posts/:slug",
+        route: "/post/:slug",
         filter: `_type == "post" && slug.current == $slug || _id == $slug`,
+      },
+      {
+        route: "/category/:slug",
+        filter: `_type == "category" && slug.current == $slug || _id == $slug`,
+      },
+      {
+        route: "/author/:slug",
+        filter: `_type == "author" && slug.current == $slug || _id == $slug`,
       },
     ]),
     locations: {
@@ -73,7 +81,48 @@ export const presentation: PresentationPluginOptions = {
             locations: [
               {
                 title: document.title,
-                href: `/posts/${document.slug}`,
+                href: `/post/${document.slug}`,
+              },
+            ],
+          };
+        },
+      }),
+      category: defineLocations({
+        select: {
+          title: "title",
+          slug: "slug.current",
+        },
+        resolve: (document) => {
+          if (!(document?.title && document?.slug)) {
+            return;
+          }
+
+          return {
+            locations: [
+              {
+                title: document.title,
+                href: `/category/${document.slug}`,
+              },
+            ],
+          };
+        },
+      }),
+      author: defineLocations({
+        select: {
+          firstName: "firstName",
+          lastName: "lastName",
+          slug: "slug.current",
+        },
+        resolve: (document) => {
+          if (!(document?.firstName && document?.lastName && document?.slug)) {
+            return;
+          }
+
+          return {
+            locations: [
+              {
+                title: `${document.firstName} ${document.lastName}`,
+                href: `/author/${document.slug}`,
               },
             ],
           };

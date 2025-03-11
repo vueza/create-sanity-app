@@ -3,7 +3,7 @@ export const link = /* groq */ `{
   "href": coalesce(
     select(
       type == "page" => "/" + page->slug.current,
-      type == "post" => "/posts/" + post->slug.current,
+      type == "post" => "/post/" + post->slug.current,
       href
     ),
     ""

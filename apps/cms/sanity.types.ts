@@ -316,7 +316,13 @@ export type Post = {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "person";
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  category?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "category";
   };
   content: Content;
   seo: Seo;
@@ -328,14 +334,25 @@ export type Seo = {
   description: string;
 };
 
-export type Person = {
+export type Category = {
   _id: string;
-  _type: "person";
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+};
+
+export type Author = {
+  _id: string;
+  _type: "author";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   firstName: string;
   lastName: string;
+  slug: Slug;
 };
 
 export type Slug = {
@@ -474,11 +491,25 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Link | ImageWithAlt | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Hero | ImageWithAltRequired | LinkRequired | Heading | ContentObject | Content | Page | Post | Seo | Person | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Link | ImageWithAlt | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Hero | ImageWithAltRequired | LinkRequired | Heading | ContentObject | Content | Page | Post | Seo | Category | Author | Slug | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./src/queries/get-authors.ts
+// Variable: getAuthors
+// Query: *[_type == "author" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "slug": slug.current  }
+export type GetAuthorsResult = Array<{
+  slug: string;
+}>;
+
+// Source: ./src/queries/get-categories.ts
+// Variable: getCategories
+// Query: *[_type == "category" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "slug": slug.current  }
+export type GetCategoriesResult = Array<{
+  slug: string;
+}>;
+
 // Source: ./src/queries/get-page.ts
 // Variable: getPage
-// Query: *[_type == 'page' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "contentObject" => {  value[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},},  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
+// Query: *[_type == 'page' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "contentObject" => {  value[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  }},},  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  image,},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
 export type GetPageResult = {
   _id: string;
   _type: "page";
@@ -572,7 +603,7 @@ export type GetPagesResult = Array<{
 
 // Source: ./src/queries/get-post.ts
 // Variable: getPost
-// Query: *[_type == 'post' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/posts/" + post->slug.current,      href    ),    ""  )},  }},    seo {  title,  description,},  }
+// Query: *[_type == 'post' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    title,    content[] {  ...,  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  }},    seo {  title,  description,},  }
 export type GetPostResult = {
   title: string;
   content: Array<{
@@ -626,6 +657,35 @@ export type GetPostResult = {
   };
 } | null;
 
+// Source: ./src/queries/get-posts-by-author.ts
+// Variable: getPostsByAuthorSlug
+// Query: {  "posts": *[_type == "post" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) {    _id,    title,    "href": "/post/" + slug.current,  },  "author": *[_type == "author" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {    firstName,    lastName,  }}
+export type GetPostsByAuthorSlugResult = {
+  posts: Array<{
+    _id: string;
+    title: string;
+    href: string;
+  }>;
+  author: {
+    firstName: string;
+    lastName: string;
+  } | null;
+};
+
+// Source: ./src/queries/get-posts-by-category.ts
+// Variable: getPostsByCategorySlug
+// Query: {  "posts": *[_type == "post" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) {    _id,    title,    "href": "/post/" + slug.current,  },  "category": *[_type == "category" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {    title,  }}
+export type GetPostsByCategorySlugResult = {
+  posts: Array<{
+    _id: string;
+    title: string;
+    href: string;
+  }>;
+  category: {
+    title: string;
+  } | null;
+};
+
 // Source: ./src/queries/get-posts.ts
 // Variable: getPosts
 // Query: *[_type == "post" && defined(slug.current)] |  order(date desc, _updatedAt desc) {    "slug": slug.current  }
@@ -637,9 +697,13 @@ export type GetPostsResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n  *[_type == 'page' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"contentObject\" => {\n  value[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n},\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageResult;
+    "\n  *[_type == \"author\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetAuthorsResult;
+    "\n  *[_type == \"category\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetCategoriesResult;
+    "\n  *[_type == 'page' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"contentObject\" => {\n  value[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n},\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageResult;
     "\n  *[_type == \"page\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPagesResult;
-    "\n  *[_type == 'post' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/posts/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostResult;
+    "\n  *[_type == 'post' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostResult;
+    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"author\": *[_type == \"author\" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {\n    firstName,\n    lastName,\n  }\n}": GetPostsByAuthorSlugResult;
+    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsResult;
   }
 }
