@@ -1,8 +1,5 @@
 import { Link } from "./link";
 
-export const DOTS_LEFT = "dots-left";
-export const DOTS_RIGHT = "dots-right";
-
 export interface PaginationProps {
   href: string;
   total: number;
@@ -11,16 +8,20 @@ export interface PaginationProps {
   boundaries?: number;
 }
 
-function range(start: number, end: number): number[] {
-  return Array.from({ length: end - start + 1 }, (_, index) => index + start);
-}
+const DOTS_LEFT = "dots-left";
 
-export function getPaginationRange({
+const DOTS_RIGHT = "dots-right";
+
+const range = (start: number, end: number): number[] => {
+  return Array.from({ length: end - start + 1 }, (_, index) => index + start);
+};
+
+const getPaginationRange = ({
   total,
   page,
   siblings = 1,
   boundaries = 1,
-}: PaginationProps): (number | "dots-left" | "dots-right")[] {
+}: PaginationProps): (number | "dots-left" | "dots-right")[] => {
   const _total = Math.max(Math.trunc(total), 0);
   if (_total === 0) {
     return [];
@@ -62,7 +63,7 @@ export function getPaginationRange({
     DOTS_RIGHT,
     ...range(_total - boundaries + 1, _total),
   ];
-}
+};
 
 export const Pagination = (props: PaginationProps) => {
   const { href } = props;
