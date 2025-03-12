@@ -1,70 +1,64 @@
-import { getCategoriesSlugs } from "@company/cms/queries/get-categories-slugs";
 import { getPostsByCategorySlug } from "@company/cms/queries/get-posts-by-category";
 import { Archive } from "@company/ui/components/archive";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "../../../sanity/live";
+import { sanityFetch } from "../../../../../sanity/live";
 
 type Props = {
-  params: Promise<{ category: string }>;
+  params: Promise<{ category: string; page: string }>;
 };
-
-export async function generateStaticParams() {
-  const { data } = await sanityFetch({
-    query: getCategoriesSlugs,
-    perspective: "published",
-    stega: false,
-  });
-
-  return data;
-}
 
 const perPage = 10;
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
+  const page = Number(params.page);
 
   const { data } = await sanityFetch({
     query: getPostsByCategorySlug,
     params: {
       ...params,
-      from: 0,
-      to: perPage,
+      from: (page - 1) * perPage,
+      to: page * perPage,
     },
     stega: false,
   });
 
   return {
-    title: data.category?.title,
+    title: `${data.category?.title} - Page ${page}`,
   };
 }
 
 export default async function Category(props: Props) {
   const params = await props.params;
+  const page = Number(params.page);
+
+  if (page <= 1) {
+    notFound();
+  }
 
   const { data } = await sanityFetch({
     query: getPostsByCategorySlug,
     params: {
       ...params,
-      from: 0,
-      to: perPage,
+      from: (page - 1) * perPage,
+      to: page * perPage,
     },
-    stega: false,
   });
 
   const total = Math.ceil(data.total / perPage);
 
-  if (!data.category) {
+  if (!data.category || data.posts.length === 0) {
     notFound();
   }
 
   return (
     <Archive
-      title={data.category.title}
+      title={`${data.category.title} - Page ${page}`}
       posts={data.posts}
       href={data.category.href}
       total={total}
-      page={1}
+      page={page}
     />
   );
 }

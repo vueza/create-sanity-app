@@ -659,30 +659,34 @@ export type GetPostResult = {
 
 // Source: ./src/queries/get-posts-by-author.ts
 // Variable: getPostsByAuthorSlug
-// Query: {  "posts": *[_type == "post" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) {    _id,    title,    "href": "/post/" + slug.current,  },  "author": *[_type == "author" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {    firstName,    lastName,  }}
+// Query: {  "posts": *[_type == "post" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) [$from...$to] {    _id,    title,    "href": "/post/" + slug.current,  },  "total": count(*[_type == "post" && defined(slug.current) && author->slug.current == $author]),  "author": *[_type == "author" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {    firstName,    lastName,    "href": "/author/" + slug.current,  }}
 export type GetPostsByAuthorSlugResult = {
   posts: Array<{
     _id: string;
     title: string;
     href: string;
   }>;
+  total: number;
   author: {
     firstName: string;
     lastName: string;
+    href: string;
   } | null;
 };
 
 // Source: ./src/queries/get-posts-by-category.ts
 // Variable: getPostsByCategorySlug
-// Query: {  "posts": *[_type == "post" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) {    _id,    title,    "href": "/post/" + slug.current,  },  "category": *[_type == "category" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {    title,  }}
+// Query: {  "posts": *[_type == "post" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) [$from...$to] {    _id,    title,    "href": "/post/" + slug.current,  },  "total": count(*[_type == "post" && defined(slug.current) && category->slug.current == $category]),  "category": *[_type == "category" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {    title,    "href": "/category/" + slug.current,  }}
 export type GetPostsByCategorySlugResult = {
   posts: Array<{
     _id: string;
     title: string;
     href: string;
   }>;
+  total: number;
   category: {
     title: string;
+    href: string;
   } | null;
 };
 
@@ -695,12 +699,15 @@ export type GetPostsSlugsResult = Array<{
 
 // Source: ./src/queries/get-posts.ts
 // Variable: getPosts
-// Query: *[_type == "post" && defined(slug.current)] |  order(date desc, _updatedAt desc) {    _id,    title,    "href": "/post/" + slug.current,  }
-export type GetPostsResult = Array<{
-  _id: string;
-  title: string;
-  href: string;
-}>;
+// Query: {  "posts": *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) [$from...$to] {    _id,    title,    "href": "/post/" + slug.current,  },  "total": count(*[_type == "post" && defined(slug.current)]),}
+export type GetPostsResult = {
+  posts: Array<{
+    _id: string;
+    title: string;
+    href: string;
+  }>;
+  total: number;
+};
 
 // Source: ./src/queries/get-sitemap.ts
 // Variable: getSitemap
@@ -733,10 +740,10 @@ declare module "@sanity/client" {
     "\n  *[_type == 'page' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"contentObject\" => {\n  value[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n},\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image,\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageResult;
     "\n  *[_type == \"page\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPagesSlugsResult;
     "\n  *[_type == 'post' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    title,\n    content[] {\n  ...,\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  }\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostResult;
-    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"author\": *[_type == \"author\" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {\n    firstName,\n    lastName,\n  }\n}": GetPostsByAuthorSlugResult;
-    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n  }\n}": GetPostsByCategorySlugResult;
+    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && author->slug.current == $author]),\n  \"author\": *[_type == \"author\" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {\n    firstName,\n    lastName,\n    \"href\": \"/author/\" + slug.current,\n  }\n}": GetPostsByAuthorSlugResult;
+    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && category->slug.current == $category]),\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n    \"href\": \"/category/\" + slug.current,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsSlugsResult;
-    "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  }\n": GetPostsResult;
+    "{\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current)]),\n}": GetPostsResult;
     "{\n  \"pages\": *[_type == \"page\" && defined(slug.current) && slug.current != \"/\"] | order(date desc, _updatedAt desc) {\n    \"href\": \"/\" + slug.current,\n    _updatedAt,\n  },\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/post/\" + slug.current,\n    _updatedAt,\n  },\n  \"authors\": *[_type == \"author\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/author/\" + slug.current,\n    _updatedAt,\n  },\n  \"categories\": *[_type == \"category\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/category/\" + slug.current,\n    _updatedAt,\n  },\n}": GetSitemapResult;
   }
 }

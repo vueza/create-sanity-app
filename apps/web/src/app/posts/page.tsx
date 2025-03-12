@@ -1,5 +1,5 @@
 import { getPosts } from "@company/cms/queries/get-posts";
-import { Link } from "@company/ui/components/link";
+import { Archive } from "@company/ui/components/archive";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { sanityFetch } from "../../sanity/live";
@@ -10,22 +10,30 @@ export function generateMetadata(): Metadata {
   };
 }
 
-export default async function Post() {
-  const { data } = await sanityFetch({ query: getPosts });
+const perPage = 10;
 
-  if (data.length === 0) {
+export default async function Post() {
+  const { data } = await sanityFetch({
+    query: getPosts,
+    params: {
+      from: 0,
+      to: perPage,
+    },
+  });
+
+  const total = Math.ceil(data.total / perPage);
+
+  if (data.posts.length === 0) {
     notFound();
   }
 
   return (
-    <div>
-      <h1>Posts</h1>
-
-      {data.map(({ _id, href, title }) => (
-        <div key={_id}>
-          <Link href={href}>{title}</Link>
-        </div>
-      ))}
-    </div>
+    <Archive
+      title="Posts"
+      posts={data.posts}
+      href="/posts"
+      total={total}
+      page={1}
+    />
   );
 }
