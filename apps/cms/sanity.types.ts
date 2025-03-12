@@ -702,6 +702,28 @@ export type GetPostsResult = Array<{
   href: string;
 }>;
 
+// Source: ./src/queries/get-sitemap.ts
+// Variable: getSitemap
+// Query: {  "pages": *[_type == "page" && defined(slug.current) && slug.current != "/"] | order(date desc, _updatedAt desc) {    "href": "/" + slug.current,    _updatedAt,  },  "posts": *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "href": "/post/" + slug.current,    _updatedAt,  },  "authors": *[_type == "author" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "href": "/author/" + slug.current,    _updatedAt,  },  "categories": *[_type == "category" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "href": "/category/" + slug.current,    _updatedAt,  },}
+export type GetSitemapResult = {
+  pages: Array<{
+    href: string;
+    _updatedAt: string;
+  }>;
+  posts: Array<{
+    href: string;
+    _updatedAt: string;
+  }>;
+  authors: Array<{
+    href: string;
+    _updatedAt: string;
+  }>;
+  categories: Array<{
+    href: string;
+    _updatedAt: string;
+  }>;
+};
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -715,5 +737,6 @@ declare module "@sanity/client" {
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsSlugsResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  }\n": GetPostsResult;
+    "{\n  \"pages\": *[_type == \"page\" && defined(slug.current) && slug.current != \"/\"] | order(date desc, _updatedAt desc) {\n    \"href\": \"/\" + slug.current,\n    _updatedAt,\n  },\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/post/\" + slug.current,\n    _updatedAt,\n  },\n  \"authors\": *[_type == \"author\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/author/\" + slug.current,\n    _updatedAt,\n  },\n  \"categories\": *[_type == \"category\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/category/\" + slug.current,\n    _updatedAt,\n  },\n}": GetSitemapResult;
   }
 }
