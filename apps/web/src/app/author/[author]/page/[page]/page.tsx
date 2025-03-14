@@ -1,8 +1,8 @@
+import { sanityFetch } from "@company/cms/client/live";
 import { getPostsByAuthorSlug } from "@company/cms/queries/get-posts-by-author";
 import { Archive } from "@company/ui/components/archive";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "../../../../../sanity/live";
 
 type Props = {
   params: Promise<{ author: string; page: string }>;

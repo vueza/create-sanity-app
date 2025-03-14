@@ -711,6 +711,13 @@ export type GetPostsResult = {
   total: number;
 };
 
+// Source: ./src/queries/get-settings.ts
+// Variable: getSettings
+// Query: *[_type == "settings"][0] {    title,  }
+export type GetSettingsResult = {
+  title: string;
+} | null;
+
 // Source: ./src/queries/get-sitemap.ts
 // Variable: getSitemap
 // Query: {  "pages": *[_type == "page" && defined(slug.current) && slug.current != "/"] | order(date desc, _updatedAt desc) {    "href": "/" + slug.current,    _updatedAt,  },  "posts": *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "href": "/post/" + slug.current,    _updatedAt,  },  "authors": *[_type == "author" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "href": "/author/" + slug.current,    _updatedAt,  },  "categories": *[_type == "category" && defined(slug.current)] | order(date desc, _updatedAt desc) {    "href": "/category/" + slug.current,    _updatedAt,  },}
@@ -746,6 +753,7 @@ declare module "@sanity/client" {
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && category->slug.current == $category]),\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n    \"href\": \"/category/\" + slug.current,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsSlugsResult;
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current)]),\n}": GetPostsResult;
+    "\n  *[_type == \"settings\"][0] {\n    title,\n  }\n": GetSettingsResult;
     "{\n  \"pages\": *[_type == \"page\" && defined(slug.current) && slug.current != \"/\"] | order(date desc, _updatedAt desc) {\n    \"href\": \"/\" + slug.current,\n    _updatedAt,\n  },\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/post/\" + slug.current,\n    _updatedAt,\n  },\n  \"authors\": *[_type == \"author\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/author/\" + slug.current,\n    _updatedAt,\n  },\n  \"categories\": *[_type == \"category\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"href\": \"/category/\" + slug.current,\n    _updatedAt,\n  },\n}": GetSitemapResult;
   }
 }

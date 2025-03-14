@@ -2,7 +2,7 @@ import {
   type CreateDataAttributeProps,
   createDataAttribute,
 } from "next-sanity";
-import { env } from "../env";
+import { env } from "./env";
 
 type DataAttributeConfig = CreateDataAttributeProps &
   Required<Pick<CreateDataAttributeProps, "id" | "type" | "path">>;

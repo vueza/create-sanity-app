@@ -1,5 +1,5 @@
+import { env } from "@company/cms/client/env";
 import type { NextConfig } from "next";
-import { env } from "./src/env";
 
 if (!env) {
   throw new Error("Invalid environment variables");

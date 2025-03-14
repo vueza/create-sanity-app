@@ -1,7 +1,7 @@
 "use client";
 
+import { dataAttr } from "@company/cms/client/data-attr";
 import { useOptimistic } from "next-sanity/hooks";
-import { dataAttr } from "../sanity/data-attr";
 import { BlockRenderer, type Page } from "./block-renderer";
 
 interface PageBuilderProps {

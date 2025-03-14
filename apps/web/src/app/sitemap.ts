@@ -1,6 +1,6 @@
+import { sanityFetch } from "@company/cms/client/live";
 import { getSitemap } from "@company/cms/queries/get-sitemap";
 import type { MetadataRoute } from "next";
-import { sanityFetch } from "../sanity/live";
 
 const baseUrl = "https://example.com";
 

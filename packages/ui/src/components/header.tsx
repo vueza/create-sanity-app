@@ -1,7 +1,11 @@
 import { getDictionary } from "@company/internationalization/dictionaries";
 import { Container } from "./container";
 
-export const Header = async () => {
+interface HeaderProps {
+  title: string;
+}
+
+export const Header = async ({ title }: HeaderProps) => {
   const {
     header: { label },
   } = await getDictionary("en");
@@ -14,7 +18,9 @@ export const Header = async () => {
       >
         Skip to main content
       </a>
-      <Container>{label}</Container>
+      <Container>
+        {label} for <span>{title}</span>
+      </Container>
     </header>
   );
 };

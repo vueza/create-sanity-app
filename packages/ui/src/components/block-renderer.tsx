@@ -1,9 +1,9 @@
+import { dataAttr } from "@company/cms/client/data-attr";
 import type { GetPageResult } from "@company/cms/types";
-import { Content } from "@company/ui/components/content";
-import { Heading } from "@company/ui/components/heading";
-import { Hero } from "@company/ui/components/hero";
 import { type ComponentType, createElement } from "react";
-import { dataAttr } from "../sanity/data-attr";
+import { Content } from "./content";
+import { Heading } from "./heading";
+import { Hero } from "./hero";
 
 export type Page = NonNullable<GetPageResult>;
 

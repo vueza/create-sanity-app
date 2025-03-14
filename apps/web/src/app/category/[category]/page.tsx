@@ -1,9 +1,9 @@
+import { sanityFetch } from "@company/cms/client/live";
 import { getCategoriesSlugs } from "@company/cms/queries/get-categories-slugs";
 import { getPostsByCategorySlug } from "@company/cms/queries/get-posts-by-category";
 import { Archive } from "@company/ui/components/archive";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "../../../sanity/live";
 
 type Props = {
   params: Promise<{ category: string }>;

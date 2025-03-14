@@ -1,9 +1,9 @@
+import { sanityFetch } from "@company/cms/client/live";
 import { getPage } from "@company/cms/queries/get-page";
 import { getPagesSlugs } from "@company/cms/queries/get-pages-slugs";
+import { PageBuilder } from "@company/ui/components/page-builder";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PageBuilder } from "../../components/page-builder";
-import { sanityFetch } from "../../sanity/live";
 
 type Props = {
   params: Promise<{ slug: string[] }>;

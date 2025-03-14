@@ -1,8 +1,8 @@
+import { sanityFetch } from "@company/cms/client/live";
 import { getPosts } from "@company/cms/queries/get-posts";
 import { Archive } from "@company/ui/components/archive";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { sanityFetch } from "../../sanity/live";
 
 export function generateMetadata(): Metadata {
   return {

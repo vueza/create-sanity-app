@@ -5,11 +5,12 @@ import { Main } from "./main";
 
 interface LayoutProps {
   children: ReactNode;
+  title: string;
 }
 
-export const Layout = ({ children }: LayoutProps) => (
+export const Layout = ({ children, title }: LayoutProps) => (
   <>
-    <Header />
+    <Header title={title} />
     <Main>{children}</Main>
     <Footer />
   </>
