@@ -6,7 +6,7 @@
     "@company/ui": "workspace:*",
     "@next/bundle-analyzer": "15.2.2",
     "next": "15.2.2",
-    "next-sanity": "9.9.3",
+    "next-sanity": "9.9.4",
     "postcss": "8.5.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
