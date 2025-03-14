@@ -29,7 +29,7 @@ export const hero = defineType({
     defineField({
       name: "image",
       title: "Image",
-      type: "imageWithAltRequired",
+      type: "image",
       validation: (Rule) => Rule.required().assetRequired(),
     }),
   ],

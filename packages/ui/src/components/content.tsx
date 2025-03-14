@@ -12,9 +12,8 @@ interface ContentProps {
   value: PortableTextProps["value"];
 }
 
-type ImageWithAltBlock = Extract<
-  NonNullable<GetPostResult>["content"][number],
-  { _type: "imageWithAltRequired" }
+type ImageType = PortableTextTypeComponentProps<
+  Extract<NonNullable<GetPostResult>["content"][number], { _type: "image" }>
 >;
 
 export const Content = ({ value }: ContentProps) => (
@@ -22,18 +21,14 @@ export const Content = ({ value }: ContentProps) => (
     <PortableText
       components={{
         types: {
-          imageWithAltRequired: ({
-            value,
-          }: PortableTextTypeComponentProps<ImageWithAltBlock>) => {
-            return (
-              <Image
-                image={value}
-                className="h-auto w-full object-cover"
-                width={1280}
-                height={720}
-              />
-            );
-          },
+          image: ({ value }: ImageType) => (
+            <Image
+              image={value}
+              className="h-auto w-full object-cover"
+              width={1280}
+              height={720}
+            />
+          ),
         },
         marks: {
           link: ({ children, value: { href } }) => (

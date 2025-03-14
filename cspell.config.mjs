@@ -26,5 +26,6 @@ export default {
     "portabletext",
     "hotspot",
     "rgba",
+    "lqip",
   ],
 };

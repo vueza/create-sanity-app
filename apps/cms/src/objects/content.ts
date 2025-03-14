@@ -77,7 +77,7 @@ const coreBlocks: ReturnType<typeof defineArrayMember>[] = [
   }),
 
   defineArrayMember({
-    type: "imageWithAltRequired",
+    type: "image",
     title: "Image",
     validation: (Rule) => Rule.required().assetRequired(),
   }),

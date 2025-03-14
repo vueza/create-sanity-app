@@ -7,8 +7,6 @@ import { content } from "./objects/content";
 import { contentObject } from "./objects/content-object";
 import { heading } from "./objects/heading";
 import { hero } from "./objects/hero";
-import { imageWithAlt } from "./objects/image-with-alt";
-import { imageWithAltRequired } from "./objects/image-with-alt-required";
 import { link } from "./objects/link";
 import { linkRequired } from "./objects/link-required";
 import { pageBuilder } from "./objects/page-builder";
@@ -24,8 +22,6 @@ const objects: SchemaTypeDefinition[] = [
   contentObject,
   heading,
   hero,
-  imageWithAlt,
-  imageWithAltRequired,
   link,
   linkRequired,
   pageBuilder,

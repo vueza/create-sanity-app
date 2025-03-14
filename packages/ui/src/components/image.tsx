@@ -1,4 +1,8 @@
-import type { ImageWithAlt, ImageWithAltRequired } from "@company/cms/types";
+import {
+  type SanityImageCrop,
+  type SanityImageHotspot,
+  internalGroqTypeReferenceTo,
+} from "@company/cms/types";
 import createImageUrlBuilder from "@sanity/image-url";
 import {
   type ImageProps as BaseImageProps,
@@ -7,13 +11,34 @@ import {
 import NextImage from "next/image";
 
 interface ImageProps extends Omit<BaseImageProps, "src" | "alt"> {
-  image?: ImageWithAlt | ImageWithAltRequired | null;
+  image: {
+    asset: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    } | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+    altText: string;
+    lqip: string;
+  };
 }
 
 export const Image = ({ image, ...props }: ImageProps) => {
-  if (!(image?.asset?._ref && image.alt)) {
+  if (!image?.asset?._ref) {
     return null;
   }
+
+  const sharedProps: Pick<
+    BaseImageProps,
+    "alt" | "placeholder" | "blurDataURL"
+  > = {
+    alt: image.altText,
+    placeholder: "blur",
+    // biome-ignore lint/style/useNamingConvention: next/image uses this name.
+    blurDataURL: image.lqip,
+  };
 
   if (
     !(
@@ -22,7 +47,7 @@ export const Image = ({ image, ...props }: ImageProps) => {
     )
   ) {
     return (
-      <NextImage {...props} src={`/${image.asset._ref}`} alt={image.alt} />
+      <NextImage {...props} {...sharedProps} src={`/${image.asset._ref}`} />
     );
   }
 
@@ -36,5 +61,5 @@ export const Image = ({ image, ...props }: ImageProps) => {
     src = src.width(Number(props.width)).height(Number(props.height));
   }
 
-  return <SanityImage {...props} alt={image.alt} src={src.url()} />;
+  return <SanityImage {...props} {...sharedProps} src={src.url()} />;
 };
