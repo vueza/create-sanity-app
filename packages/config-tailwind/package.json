@@ -2,7 +2,7 @@
   "name": "@company/config-tailwind",
   "version": "0.0.0",
   "dependencies": {
-    "tailwindcss": "4.0.13"
+    "tailwindcss": "4.0.14"
   },
   "exports": {
     "./app.css": "./app.css"
