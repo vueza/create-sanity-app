@@ -4,7 +4,6 @@
   "dependencies": {
     "@company/internationalization": "workspace:*",
     "@portabletext/react": "3.2.1",
-    "@sanity/image-url": "1.1.0",
     "next": "15.2.2",
     "next-sanity": "9.9.3",
     "react": "19.0.0",

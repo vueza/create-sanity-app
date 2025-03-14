@@ -1,9 +1,10 @@
+import { env } from "@company/cms/client/env";
+import { imageBuilder } from "@company/cms/client/image-builder";
 import {
   type SanityImageCrop,
   type SanityImageHotspot,
   internalGroqTypeReferenceTo,
 } from "@company/cms/types";
-import createImageUrlBuilder from "@sanity/image-url";
 import { stegaClean } from "next-sanity";
 import {
   type ImageProps as BaseImageProps,
@@ -41,21 +42,11 @@ export const Image = ({ image, ...props }: ImageProps) => {
     blurDataURL: image.lqip ?? undefined,
   };
 
-  if (
-    !(
-      process.env.NEXT_PUBLIC_SANITY_DATASET &&
-      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-    )
-  ) {
+  if (!(env.NEXT_PUBLIC_SANITY_DATASET && env.NEXT_PUBLIC_SANITY_PROJECT_ID)) {
     return (
       <NextImage {...props} {...sharedProps} src={`/${image.asset._ref}`} />
     );
   }
-
-  const imageBuilder = createImageUrlBuilder({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  });
 
   let src = imageBuilder.image(image).auto("format");
   if (props.width && props.height) {
