@@ -16,9 +16,12 @@ export async function generateStaticParams() {
     stega: false,
   });
 
-  return data.map((page) => ({
-    params: { slug: page.slug.split("/") },
-  }));
+  return [
+    { params: { slug: undefined } },
+    ...data.map((page) => ({
+      params: { slug: page.slug.split("/") },
+    })),
+  ];
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
