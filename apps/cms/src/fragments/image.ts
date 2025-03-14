@@ -3,5 +3,5 @@ export const image = /* groq */ `{
   hotspot,
   crop,
   "altText": coalesce(asset->altText, ""),
-  "lqip": coalesce(asset->metadata.lqip, ""),
+  "lqip": asset->metadata.lqip,
 },`;

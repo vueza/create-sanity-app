@@ -509,7 +509,7 @@ export type GetCategoriesSlugsResult = Array<{
 
 // Source: ./src/queries/get-page.ts
 // Variable: getPage
-// Query: *[_type == 'page' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "contentObject" => {  value[] {  ...,  _type == "image" => {  asset,  hotspot,  crop,  "altText": coalesce(asset->altText, ""),  "lqip": coalesce(asset->metadata.lqip, ""),},  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  },},},  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  image {  asset,  hotspot,  crop,  "altText": coalesce(asset->altText, ""),  "lqip": coalesce(asset->metadata.lqip, ""),},},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
+// Query: *[_type == 'page' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    _id,    _type,    title,    pageBuilder[] {  _type,  _key,  _type == "contentObject" => {  value[] {  ...,  _type == "image" => {  asset,  hotspot,  crop,  "altText": coalesce(asset->altText, ""),  "lqip": asset->metadata.lqip,},  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  },},},  _type == "hero" => {  title,  description,  link {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  image {  asset,  hotspot,  crop,  "altText": coalesce(asset->altText, ""),  "lqip": asset->metadata.lqip,},},  _type == "heading" => {  heading,},},    seo {  title,  description,},  }
 export type GetPageResult = {
   _id: string;
   _type: "page";
@@ -560,7 +560,7 @@ export type GetPageResult = {
       _type: "image";
       _key: string;
       altText: string | "";
-      lqip: string | "";
+      lqip: string | null;
       markDefs: null;
     }>;
   } | {
@@ -586,7 +586,7 @@ export type GetPageResult = {
       hotspot: SanityImageHotspot | null;
       crop: SanityImageCrop | null;
       altText: string | "";
-      lqip: string | "";
+      lqip: string | null;
     };
   }>;
   seo: {
@@ -604,7 +604,7 @@ export type GetPagesSlugsResult = Array<{
 
 // Source: ./src/queries/get-post.ts
 // Variable: getPost
-// Query: *[_type == 'post' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    title,    content[] {  ...,  _type == "image" => {  asset,  hotspot,  crop,  "altText": coalesce(asset->altText, ""),  "lqip": coalesce(asset->metadata.lqip, ""),},  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  },},    seo {  title,  description,},  }
+// Query: *[_type == 'post' && slug.current == $slug] |  order(date desc, _updatedAt desc)[0] {    title,    content[] {  ...,  _type == "image" => {  asset,  hotspot,  crop,  "altText": coalesce(asset->altText, ""),  "lqip": asset->metadata.lqip,},  markDefs[] {    ...,    _type == "link" => {  children,  "href": coalesce(    select(      type == "page" => "/" + page->slug.current,      type == "post" => "/post/" + post->slug.current,      href    ),    ""  )},  },},    seo {  title,  description,},  }
 export type GetPostResult = {
   title: string;
   content: Array<{
@@ -650,7 +650,7 @@ export type GetPostResult = {
     _type: "image";
     _key: string;
     altText: string | "";
-    lqip: string | "";
+    lqip: string | null;
     markDefs: null;
   }>;
   seo: {
@@ -739,9 +739,9 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"author\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetAuthorsSlugsResult;
     "\n  *[_type == \"category\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetCategoriesSlugsResult;
-    "\n  *[_type == 'page' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"contentObject\" => {\n  value[] {\n  ...,\n  _type == \"image\" => {\n  asset,\n  hotspot,\n  crop,\n  \"altText\": coalesce(asset->altText, \"\"),\n  \"lqip\": coalesce(asset->metadata.lqip, \"\"),\n},\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  },\n},\n},\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image {\n  asset,\n  hotspot,\n  crop,\n  \"altText\": coalesce(asset->altText, \"\"),\n  \"lqip\": coalesce(asset->metadata.lqip, \"\"),\n},\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageResult;
+    "\n  *[_type == 'page' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    _id,\n    _type,\n    title,\n    pageBuilder[] {\n  _type,\n  _key,\n  _type == \"contentObject\" => {\n  value[] {\n  ...,\n  _type == \"image\" => {\n  asset,\n  hotspot,\n  crop,\n  \"altText\": coalesce(asset->altText, \"\"),\n  \"lqip\": asset->metadata.lqip,\n},\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  },\n},\n},\n  _type == \"hero\" => {\n  title,\n  description,\n  link {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  image {\n  asset,\n  hotspot,\n  crop,\n  \"altText\": coalesce(asset->altText, \"\"),\n  \"lqip\": asset->metadata.lqip,\n},\n},\n  _type == \"heading\" => {\n  heading,\n},\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPageResult;
     "\n  *[_type == \"page\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPagesSlugsResult;
-    "\n  *[_type == 'post' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    title,\n    content[] {\n  ...,\n  _type == \"image\" => {\n  asset,\n  hotspot,\n  crop,\n  \"altText\": coalesce(asset->altText, \"\"),\n  \"lqip\": coalesce(asset->metadata.lqip, \"\"),\n},\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  },\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostResult;
+    "\n  *[_type == 'post' && slug.current == $slug] |\n  order(date desc, _updatedAt desc)[0] {\n    title,\n    content[] {\n  ...,\n  _type == \"image\" => {\n  asset,\n  hotspot,\n  crop,\n  \"altText\": coalesce(asset->altText, \"\"),\n  \"lqip\": asset->metadata.lqip,\n},\n  markDefs[] {\n    ...,\n    _type == \"link\" => {\n  children,\n  \"href\": coalesce(\n    select(\n      type == \"page\" => \"/\" + page->slug.current,\n      type == \"post\" => \"/post/\" + post->slug.current,\n      href\n    ),\n    \"\"\n  )\n},\n  },\n},\n    seo {\n  title,\n  description,\n},\n  }\n": GetPostResult;
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && author->slug.current == $author] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && author->slug.current == $author]),\n  \"author\": *[_type == \"author\" && slug.current == $author] | order(date desc, _updatedAt desc)[0] {\n    firstName,\n    lastName,\n    \"href\": \"/author/\" + slug.current,\n  }\n}": GetPostsByAuthorSlugResult;
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(date desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && category->slug.current == $category]),\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {\n    title,\n    \"href\": \"/category/\" + slug.current,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(date desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsSlugsResult;

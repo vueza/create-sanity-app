@@ -4,6 +4,7 @@ import {
   internalGroqTypeReferenceTo,
 } from "@company/cms/types";
 import createImageUrlBuilder from "@sanity/image-url";
+import { stegaClean } from "next-sanity";
 import {
   type ImageProps as BaseImageProps,
   Image as SanityImage,
@@ -21,7 +22,7 @@ interface ImageProps extends Omit<BaseImageProps, "src" | "alt"> {
     hotspot: SanityImageHotspot | null;
     crop: SanityImageCrop | null;
     altText: string;
-    lqip: string;
+    lqip: string | null;
   };
 }
 
@@ -34,10 +35,10 @@ export const Image = ({ image, ...props }: ImageProps) => {
     BaseImageProps,
     "alt" | "placeholder" | "blurDataURL"
   > = {
-    alt: image.altText,
-    placeholder: "blur",
+    alt: stegaClean(image.altText),
+    placeholder: image.lqip ? "blur" : undefined,
     // biome-ignore lint/style/useNamingConvention: next/image uses this name.
-    blurDataURL: image.lqip,
+    blurDataURL: image.lqip ?? undefined,
   };
 
   if (
