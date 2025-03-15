@@ -1,5 +1,7 @@
 import { defineQuery } from "groq";
-import { pageBuilder } from "../fragments/page-builder";
+import { z } from "zod";
+import { q } from "../client/client";
+import { pageBuilder, pageBuilderTyped } from "../fragments/page-builder";
 import { seo } from "../fragments/seo";
 
 export const getPage = defineQuery(`
@@ -12,3 +14,14 @@ export const getPage = defineQuery(`
     ${seo}
   }
 `);
+
+export const getPageTyped = q
+  .parameters<{ slug: string }>()
+  .star.filterByType("page")
+  .order("_updatedAt desc")
+  .filterBy("slug.current == $slug")
+  .slice(0)
+  .project(() => ({
+    title: z.string(),
+    ...pageBuilderTyped,
+  }));
