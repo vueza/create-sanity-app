@@ -1,14 +1,12 @@
 import { dataAttr } from "@company/cms/client/data-attr";
-import type { GetPageResult } from "@company/cms/types";
+import type { PageBuilderFragment } from "@company/cms/fragments/page-builder";
+import { Content } from "@company/ui/components/content";
+import { Heading } from "@company/ui/components/heading";
+import { Hero } from "@company/ui/components/hero";
 import { type ComponentType, createElement } from "react";
-import { Content } from "./content";
-import { Heading } from "./heading";
-import { Hero } from "./hero";
-
-export type Page = NonNullable<GetPageResult>;
 
 const Blocks: Record<
-  Page["pageBuilder"][number]["_type"],
+  PageBuilderFragment["pageBuilder"][number]["_type"],
   // biome-ignore lint/suspicious/noExplicitAny: TODO: Fix types
   ComponentType<any>
 > = {
@@ -18,7 +16,7 @@ const Blocks: Record<
 };
 
 interface BlockRendererProps {
-  block: Page["pageBuilder"][number];
+  block: PageBuilderFragment["pageBuilder"][number];
   id: string;
   type: string;
 }

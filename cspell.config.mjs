@@ -29,5 +29,6 @@ export default {
     "lqip",
     "lefthook",
     "vueza",
+    "groqd",
   ],
 };

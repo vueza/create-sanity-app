@@ -1,6 +1,6 @@
 import { env } from "@company/cms/client/env";
 import { imageBuilder } from "@company/cms/client/image-builder";
-import type { GetPostResult } from "@company/cms/types";
+import type { ImageFragment } from "@company/cms/fragments/image";
 import { getImageDimensions } from "@sanity/asset-utils";
 import { stegaClean } from "next-sanity";
 import {
@@ -10,10 +10,7 @@ import {
 import NextImage from "next/image";
 
 interface ImageProps extends Omit<BaseImageProps, "src" | "alt"> {
-  image: Extract<
-    NonNullable<GetPostResult>["content"][number],
-    { _type: "image" }
-  >;
+  image: ImageFragment;
   alt?: string;
 }
 

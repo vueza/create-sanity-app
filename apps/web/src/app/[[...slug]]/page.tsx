@@ -31,11 +31,12 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const slug = params.slug ? params.slug.join("/") : "/";
-  const { data } = await sanityFetch({
-    query: getPage,
+  const response = await sanityFetch({
+    query: getPage.query,
     params: { slug },
     stega: false,
   });
+  const data = getPage.parse(response.data);
 
   const images = data?.seo?.image?.asset?._ref
     ? [
@@ -50,10 +51,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   return {
     title: data?.seo.title,
-    description: data?.seo.title,
+    description: data?.seo.description,
     openGraph: {
       title: data?.seo.title,
-      description: data?.seo.title,
+      description: data?.seo.description,
       images,
     },
     twitter: {
@@ -69,7 +70,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function Page(props: Props) {
   const params = await props.params;
   const slug = params.slug ? params.slug.join("/") : "/";
-  const { data } = await sanityFetch({ query: getPage, params: { slug } });
+  const response = await sanityFetch({
+    query: getPage.query,
+    params: { slug },
+  });
+  const data = getPage.parse(response.data);
 
   if (!data) {
     notFound();

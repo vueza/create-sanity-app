@@ -1,18 +1,9 @@
-import type { GetPageResult } from "@company/cms/types";
+import type { HeroFragment } from "@company/cms/fragments/hero";
 import { Container } from "./container";
 import { Image } from "./image";
 import { Link } from "./link";
 
-interface HeroProps
-  extends Omit<
-    Extract<
-      NonNullable<GetPageResult>["pageBuilder"][number],
-      { _type: "hero" }
-    >,
-    "_type" | "_key"
-  > {}
-
-export const Hero = ({ title, description, link, image }: HeroProps) => (
+export const Hero = ({ title, description, link, image }: HeroFragment) => (
   <Container className="p-4">
     <h2>{title}</h2>
     <p>{description}</p>
