@@ -1,4 +1,5 @@
 export const image = /* groq */ `{
+  _type,
   asset,
   hotspot,
   crop,

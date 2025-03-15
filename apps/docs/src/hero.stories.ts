@@ -23,6 +23,7 @@ export const Default: Story = {
       children: "Learn more",
     },
     image: {
+      _type: "image",
       asset: {
         _ref: "placeholder-350x350.webp",
         _type: "reference",

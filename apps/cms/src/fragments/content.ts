@@ -1,11 +1,7 @@
+import { block } from "./block";
 import { image } from "./image";
-import { link } from "./link";
 
 export const content = /* groq */ `{
-  ...,
+  _type == "block" => ${block}
   _type == "image" => ${image}
-  markDefs[] {
-    ...,
-    _type == "link" => ${link}
-  },
 },`;
