@@ -17,6 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     image: {
+      _type: "image",
       asset: {
         _ref: "placeholder-350x350.webp",
         _type: "reference",

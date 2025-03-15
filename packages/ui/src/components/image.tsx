@@ -1,10 +1,6 @@
 import { env } from "@company/cms/client/env";
 import { imageBuilder } from "@company/cms/client/image-builder";
-import {
-  type SanityImageCrop,
-  type SanityImageHotspot,
-  internalGroqTypeReferenceTo,
-} from "@company/cms/types";
+import type { GetPostResult } from "@company/cms/types";
 import { stegaClean } from "next-sanity";
 import {
   type ImageProps as BaseImageProps,
@@ -13,18 +9,10 @@ import {
 import NextImage from "next/image";
 
 interface ImageProps extends Omit<BaseImageProps, "src" | "alt"> {
-  image: {
-    asset: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    } | null;
-    hotspot: SanityImageHotspot | null;
-    crop: SanityImageCrop | null;
-    altText: string;
-    lqip: string | null;
-  };
+  image: Extract<
+    NonNullable<GetPostResult>["content"][number],
+    { _type: "image" }
+  >;
 }
 
 export const Image = ({ image, ...props }: ImageProps) => {
