@@ -27,5 +27,6 @@ export default {
     "hotspot",
     "rgba",
     "lqip",
+    "groqd",
   ],
 };

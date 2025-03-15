@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    _type: "hero",
     title: "Hero",
     description: "This is a hero component.",
     link: {

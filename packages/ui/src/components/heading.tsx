@@ -1,16 +1,7 @@
-import type { GetPageResult } from "@company/cms/types";
+import type { HeadingFragment } from "@company/cms/fragments/heading";
 import { Container } from "./container";
 
-interface HeadingProps
-  extends Omit<
-    Extract<
-      NonNullable<GetPageResult>["pageBuilder"][number],
-      { _type: "heading" }
-    >,
-    "_type" | "_key"
-  > {}
-
-export const Heading = ({ heading }: HeadingProps) => (
+export const Heading = ({ heading }: HeadingFragment) => (
   <Container className="p-4">
     <h1>{heading}</h1>
   </Container>

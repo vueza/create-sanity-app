@@ -16,7 +16,6 @@ export const Default: Story = {
     page: {
       _id: "adbeb876-7a15-42e7-b474-4d8d2e7d41a0",
       _type: "page",
-      title: "Title",
       pageBuilder: [
         {
           _type: "heading",
@@ -24,10 +23,6 @@ export const Default: Story = {
           heading: "Heading",
         },
       ],
-      seo: {
-        title: "Title",
-        description: "Description",
-      },
     },
   },
 };

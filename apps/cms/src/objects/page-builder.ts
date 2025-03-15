@@ -1,18 +1,6 @@
-import {
-  type ArrayDefinition,
-  defineArrayMember,
-  defineField,
-  defineType,
-} from "sanity";
+import { defineArrayMember, defineType } from "sanity";
 
-const coreBlocks = [
-  defineArrayMember({ type: "contentObject" }),
-  defineArrayMember({ type: "hero" }),
-];
-
-const availableBlocks = [defineArrayMember({ type: "heading" })];
-
-const sharedTypeOptions: Omit<ArrayDefinition, "of"> = {
+export const pageBuilder = defineType({
   name: "pageBuilder",
   title: "Page builder",
   type: "array",
@@ -27,17 +15,10 @@ const sharedTypeOptions: Omit<ArrayDefinition, "of"> = {
       ],
     },
   },
+  of: [
+    defineArrayMember({ type: "contentObject" }),
+    defineArrayMember({ type: "hero" }),
+    defineArrayMember({ type: "heading" }),
+  ],
   validation: (Rule) => Rule.required(),
-};
-
-export const pageBuilder = defineType({
-  ...sharedTypeOptions,
-  of: [...coreBlocks, ...availableBlocks],
 });
-
-export const defineFieldPageBuilder = (of: string[]) => {
-  return defineField({
-    ...sharedTypeOptions,
-    of: of.map((type) => defineArrayMember({ type })),
-  });
-};

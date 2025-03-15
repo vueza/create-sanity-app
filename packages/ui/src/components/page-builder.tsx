@@ -1,26 +1,27 @@
 "use client";
 
 import { dataAttr } from "@company/cms/client/data-attr";
+import type { PageBuilderFragment } from "@company/cms/fragments/page-builder";
 import { useOptimistic } from "next-sanity/hooks";
-import { BlockRenderer, type Page } from "./block-renderer";
+import { BlockRenderer } from "./block-renderer";
 
 interface PageBuilderProps {
-  page: Page;
+  page: PageBuilderFragment;
 }
 
 export function PageBuilder({ page }: PageBuilderProps) {
-  const pageBuilderSections = useOptimistic<Page["pageBuilder"], Page>(
-    page?.pageBuilder ?? [],
-    (sections, action) => {
-      if (action.id !== page?._id || !action?.document?.pageBuilder) {
-        return sections;
-      }
+  const pageBuilderSections = useOptimistic<
+    PageBuilderFragment["pageBuilder"],
+    PageBuilderFragment
+  >(page?.pageBuilder ?? [], (sections, action) => {
+    if (action.id !== page?._id || !action?.document?.pageBuilder) {
+      return sections;
+    }
 
-      return action.document.pageBuilder.map(
-        (section) => sections?.find((s) => s._key === section?._key) || section,
-      );
-    },
-  );
+    return action.document.pageBuilder.map(
+      (section) => sections?.find((s) => s._key === section?._key) || section,
+    );
+  });
 
   if (pageBuilderSections.length === 0) {
     return;

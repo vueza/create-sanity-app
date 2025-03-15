@@ -27,11 +27,12 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const slug = params.slug ? params.slug.join("/") : "/";
-  const { data } = await sanityFetch({
-    query: getPage,
+  const response = await sanityFetch({
+    query: getPage.query,
     params: { slug },
     stega: false,
   });
+  const data = getPage.parse(response.data);
 
   return {
     title: data?.seo.title,
@@ -42,7 +43,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function Page(props: Props) {
   const params = await props.params;
   const slug = params.slug ? params.slug.join("/") : "/";
-  const { data } = await sanityFetch({ query: getPage, params: { slug } });
+  const response = await sanityFetch({
+    query: getPage.query,
+    params: { slug },
+  });
+  const data = getPage.parse(response.data);
 
   if (!data) {
     notFound();

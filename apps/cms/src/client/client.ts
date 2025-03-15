@@ -1,4 +1,6 @@
+import { createGroqBuilder, makeSafeQueryRunner } from "groqd";
 import { createClient } from "next-sanity";
+import type * as SanityTypes from "../../sanity.types.ts";
 import { env } from "./env";
 
 export const client = createClient({
@@ -12,3 +14,15 @@ export const client = createClient({
     studioUrl: env.NEXT_PUBLIC_SANITY_STUDIO_URL,
   },
 });
+
+export const runQuery = makeSafeQueryRunner((query) => client.fetch(query));
+
+type SchemaConfig = {
+  schemaTypes:
+    | SanityTypes.AllSanitySchemaTypes
+    | Extract<SanityTypes.Content[number], { _type: "block" }>
+    | Extract<SanityTypes.Content[number], { _type: "image" }>;
+  referenceSymbol: typeof SanityTypes.internalGroqTypeReferenceTo;
+};
+
+export const q = createGroqBuilder<SchemaConfig>({});
