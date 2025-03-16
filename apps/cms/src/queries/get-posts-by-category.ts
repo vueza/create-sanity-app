@@ -4,13 +4,13 @@ const query =
   '*[_type == "post" && defined(slug.current) && category->slug.current == $category]';
 
 export const getPostsByCategorySlug = defineQuery(`{
-  "posts": ${query} | order(date desc, _updatedAt desc) [$from...$to] {
+  "posts": ${query} | order(_createdAt desc, _updatedAt desc) [$from...$to] {
     _id,
     title,
     "href": "/post/" + slug.current,
   },
   "total": count(${query}),
-  "category": *[_type == "category" && slug.current == $category] | order(date desc, _updatedAt desc)[0] {
+  "category": *[_type == "category" && slug.current == $category] | order(_createdAt desc, _updatedAt desc)[0] {
     title,
     "href": "/category/" + slug.current,
   }

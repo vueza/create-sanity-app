@@ -4,7 +4,7 @@ import { seo } from "../fragments/seo";
 
 export const getPage = defineQuery(`
   *[_type == 'page' && slug.current == $slug] |
-  order(date desc, _updatedAt desc)[0] {
+  order(_createdAt desc, _updatedAt desc)[0] {
     _id,
     _type,
     title,
