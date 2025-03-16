@@ -27,15 +27,15 @@ export async function generateStaticParams() {
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const slug = params.slug ? params.slug.join("/") : "/";
-  const { data: page } = await sanityFetch({
+  const { data } = await sanityFetch({
     query: getPage,
     params: { slug },
     stega: false,
   });
 
   return {
-    title: page?.seo.title,
-    description: page?.seo.title,
+    title: data?.seo.title,
+    description: data?.seo.title,
   };
 }
 
