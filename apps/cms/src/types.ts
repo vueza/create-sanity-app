@@ -8,7 +8,6 @@ import { contentObject } from "./objects/content-object";
 import { heading } from "./objects/heading";
 import { hero } from "./objects/hero";
 import { link } from "./objects/link";
-import { linkRequired } from "./objects/link-required";
 import { pageBuilder } from "./objects/page-builder";
 import { seo } from "./objects/seo";
 import { settings } from "./singleton/settings";
@@ -23,7 +22,6 @@ const objects: SchemaTypeDefinition[] = [
   heading,
   hero,
   link,
-  linkRequired,
   pageBuilder,
   seo,
 ];

@@ -76,30 +76,11 @@ export type PageBuilder = Array<{
   _key: string;
 } & Heading>;
 
-export type Link = {
-  _type: "link";
-  children?: string;
-  type?: "href" | "page" | "post";
-  href?: string;
-  page?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
-  post?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post";
-  };
-};
-
 export type Hero = {
   _type: "hero";
   title: string;
   description: string;
-  link: LinkRequired;
+  link: Link;
   image: {
     asset: {
       _ref: string;
@@ -113,10 +94,10 @@ export type Hero = {
   };
 };
 
-export type LinkRequired = {
-  _type: "linkRequired";
-  children: string;
-  type: "href" | "page" | "post";
+export type Link = {
+  _type: "link";
+  children?: string;
+  type?: "href" | "page" | "post";
   href?: string;
   page?: {
     _ref: string;
@@ -491,7 +472,7 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Link | Hero | LinkRequired | Heading | ContentObject | Content | Page | Post | Seo | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Category | Author | Settings | MediaTag | Slug | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Hero | Link | Heading | ContentObject | Content | Page | Post | Seo | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Category | Author | Settings | MediaTag | Slug | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-authors-slugs.ts
 // Variable: getAuthorsSlugs
@@ -556,7 +537,7 @@ export type GetPageResult = {
     title: string;
     description: string;
     link: {
-      children: string;
+      children: string | null;
       href: string | "";
     };
     image: {

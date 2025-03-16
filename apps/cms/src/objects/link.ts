@@ -1,4 +1,9 @@
-import { type ValidationContext, defineField, defineType } from "sanity";
+import {
+  type Rule,
+  type ValidationContext,
+  defineField,
+  defineType,
+} from "sanity";
 import type { Link } from "../../sanity.types";
 
 export const linkDocumentTypes = [
@@ -96,3 +101,24 @@ export const link = defineType({
     }),
   ],
 });
+
+export const linkRequiredValidation = (Rule: Rule) =>
+  Rule.required().custom((value: Link) => {
+    if (!value) {
+      return true;
+    }
+
+    if (!(value.children && value.type)) {
+      return "Required";
+    }
+
+    if (value.type === "href" && !value.href) {
+      return "Required";
+    }
+
+    if (value.type && !value[value.type]) {
+      return "Required";
+    }
+
+    return true;
+  });

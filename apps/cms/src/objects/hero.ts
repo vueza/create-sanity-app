@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { linkRequiredValidation } from "./link";
 
 export const hero = defineType({
   name: "hero",
@@ -22,8 +23,8 @@ export const hero = defineType({
     defineField({
       name: "link",
       title: "Link",
-      type: "linkRequired",
-      validation: (Rule) => Rule.required(),
+      type: "link",
+      validation: linkRequiredValidation,
     }),
 
     defineField({
