@@ -4,6 +4,7 @@ interface ComponentData {
   name: string;
   createStory: boolean;
   createSchema: boolean;
+  createFragment: boolean;
 }
 
 const skipStory = (data: ComponentData) => {
@@ -17,6 +18,14 @@ const skipStory = (data: ComponentData) => {
 const skipSchema = (data: ComponentData) => {
   if (data.createSchema === false) {
     return "Skip this step as createSchema is set to false.";
+  }
+
+  return true;
+};
+
+const skipFragment = (data: ComponentData) => {
+  if (data.createFragment === false) {
+    return "Skip this step as createFragment is set to false.";
   }
 
   return true;
@@ -42,6 +51,11 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         message: "Do you want to create a Sanity object?",
         type: "confirm",
         name: "createSchema",
+      },
+      {
+        message: "Do you want to create a Groq fragment?",
+        type: "confirm",
+        name: "createFragment",
       },
     ],
     actions: [
@@ -76,6 +90,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         pattern: /const objects: SchemaTypeDefinition\[\] = \[/g,
         template: "  {{ camelCase name }},",
         skip: skipSchema,
+      },
+      {
+        type: "add",
+        path: "apps/cms/src/fragments/{{ kebabCase name }}.ts",
+        templateFile: "templates/fragment.hbs",
+        skip: skipFragment,
       },
     ],
   });
