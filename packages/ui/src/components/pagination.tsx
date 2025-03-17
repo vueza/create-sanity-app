@@ -8,20 +8,20 @@ export interface PaginationProps {
   boundaries?: number;
 }
 
-const DOTS_LEFT = "dots-left";
+export const DOTS_LEFT = "dots-left";
 
-const DOTS_RIGHT = "dots-right";
+export const DOTS_RIGHT = "dots-right";
 
 const range = (start: number, end: number): number[] => {
   return Array.from({ length: end - start + 1 }, (_, index) => index + start);
 };
 
-const getPaginationRange = ({
+export const getPaginationRange = ({
   total,
   page,
   siblings = 1,
   boundaries = 1,
-}: PaginationProps): (number | "dots-left" | "dots-right")[] => {
+}: Omit<PaginationProps, "href">): (number | "dots-left" | "dots-right")[] => {
   const _total = Math.max(Math.trunc(total), 0);
   if (_total === 0) {
     return [];
@@ -42,7 +42,7 @@ const getPaginationRange = ({
     const leftItemCount = siblings * 2 + boundaries + 2;
     return [
       ...range(1, leftItemCount),
-      DOTS_LEFT,
+      DOTS_RIGHT,
       ...range(_total - (boundaries - 1), _total),
     ];
   }
@@ -65,8 +65,7 @@ const getPaginationRange = ({
   ];
 };
 
-export const Pagination = (props: PaginationProps) => {
-  const { href } = props;
+export const Pagination = ({ href, ...props }: PaginationProps) => {
   const pagination = getPaginationRange(props);
 
   if (pagination.length <= 1) {
