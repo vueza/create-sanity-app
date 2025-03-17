@@ -6,21 +6,33 @@ export const structure: StructureToolOptions = {
     S.list()
       .title("Content")
       .items([
-        S.documentTypeListItem("page"),
+        S.documentTypeListItem("page").title("Pages"),
         S.listItem()
-          .title("Post")
+          .title("Posts")
           .child(
             S.list()
-              .title("Post")
+              .title("Posts")
               .items([
-                S.documentTypeListItem("post"),
-                S.documentTypeListItem("author"),
-                S.documentTypeListItem("category"),
+                S.documentTypeListItem("post").title("Posts"),
+                S.documentTypeListItem("author").title("Authors"),
+                S.documentTypeListItem("category").title("Categories"),
               ]),
           ),
+        S.divider(),
         S.listItem()
           .title("Settings")
-          .child(S.document().schemaType("settings").documentId("settings"))
-          .icon(CogIcon),
+          .child(
+            S.list()
+              .title("Settings")
+              .items([
+                S.documentTypeListItem("redirect").title("Redirects"),
+                S.listItem()
+                  .title("Settings")
+                  .child(
+                    S.document().schemaType("settings").documentId("settings"),
+                  )
+                  .icon(CogIcon),
+              ]),
+          ),
       ]),
 };

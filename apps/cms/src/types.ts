@@ -3,6 +3,7 @@ import { author } from "./documents/author";
 import { category } from "./documents/category";
 import { page } from "./documents/page";
 import { post } from "./documents/post";
+import { redirect } from "./documents/redirect";
 import { content } from "./objects/content";
 import { contentObject } from "./objects/content-object";
 import { heading } from "./objects/heading";
@@ -23,6 +24,7 @@ const objects: SchemaTypeDefinition[] = [
   hero,
   link,
   pageBuilder,
+  redirect,
   seo,
 ];
 

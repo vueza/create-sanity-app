@@ -68,6 +68,17 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Redirect = {
+  _id: string;
+  _type: "redirect";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  source: string;
+  destination: string;
+  permanent?: boolean;
+};
+
 export type PageBuilder = Array<{
   _key: string;
 } & ContentObject | {
@@ -472,7 +483,7 @@ export type SanityAssistSchemaTypeField = {
   } & SanityAssistInstruction>;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PageBuilder | Hero | Link | Heading | ContentObject | Content | Page | Post | Seo | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Category | Author | Settings | MediaTag | Slug | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Redirect | PageBuilder | Hero | Link | Heading | ContentObject | Content | Page | Post | Seo | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Category | Author | Settings | MediaTag | Slug | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/get-authors-slugs.ts
 // Variable: getAuthorsSlugs
@@ -659,6 +670,15 @@ export type GetPostsResult = {
   total: number;
 };
 
+// Source: ./src/queries/get-redirects.ts
+// Variable: getRedirects
+// Query: *[_type == "redirect"] {    source,    destination,    "permanent": defined(permanent) && permanent == true,  }
+export type GetRedirectsResult = Array<{
+  source: string;
+  destination: string;
+  permanent: boolean | false;
+}>;
+
 // Source: ./src/queries/get-settings.ts
 // Variable: getSettings
 // Query: *[_type == "settings"][0] {    title,  }
@@ -701,6 +721,7 @@ declare module "@sanity/client" {
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current) && category->slug.current == $category] | order(_createdAt desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current) && category->slug.current == $category]),\n  \"category\": *[_type == \"category\" && slug.current == $category] | order(_createdAt desc, _updatedAt desc)[0] {\n    title,\n    \"href\": \"/category/\" + slug.current,\n  }\n}": GetPostsByCategorySlugResult;
     "\n  *[_type == \"post\" && defined(slug.current)] |\n  order(_createdAt desc, _updatedAt desc) {\n    \"slug\": slug.current\n  }\n": GetPostsSlugsResult;
     "{\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(_createdAt desc, _updatedAt desc) [$from...$to] {\n    _id,\n    title,\n    \"href\": \"/post/\" + slug.current,\n  },\n  \"total\": count(*[_type == \"post\" && defined(slug.current)]),\n}": GetPostsResult;
+    "\n  *[_type == \"redirect\"] {\n    source,\n    destination,\n    \"permanent\": defined(permanent) && permanent == true,\n  }\n": GetRedirectsResult;
     "\n  *[_type == \"settings\"][0] {\n    title,\n  }\n": GetSettingsResult;
     "{\n  \"pages\": *[_type == \"page\" && defined(slug.current) && slug.current != \"/\"] | order(_createdAt desc, _updatedAt desc) {\n    \"href\": \"/\" + slug.current,\n    _updatedAt,\n  },\n  \"posts\": *[_type == \"post\" && defined(slug.current)] | order(_createdAt desc, _updatedAt desc) {\n    \"href\": \"/post/\" + slug.current,\n    _updatedAt,\n  },\n  \"authors\": *[_type == \"author\" && defined(slug.current)] | order(_createdAt desc, _updatedAt desc) {\n    \"href\": \"/author/\" + slug.current,\n    _updatedAt,\n  },\n  \"categories\": *[_type == \"category\" && defined(slug.current)] | order(_createdAt desc, _updatedAt desc) {\n    \"href\": \"/category/\" + slug.current,\n    _updatedAt,\n  },\n}": GetSitemapResult;
   }
