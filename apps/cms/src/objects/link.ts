@@ -71,8 +71,11 @@ export const link = defineType({
       type: "url",
       hidden: ({ parent }) => parent?.type !== "href",
       validation: (Rule) =>
-        // @ts-expect-error -- parent is unknown type in ValidationContext
-        Rule.custom((value, context: LinkValidationContext) => {
+        Rule.uri({
+          scheme: ["http", "https", "mailto", "tel"],
+          allowRelative: true,
+          // @ts-expect-error -- parent is unknown type in ValidationContext
+        }).custom((value, context: LinkValidationContext) => {
           if (context.parent?.type === "href" && !value) {
             return "URL is required when type is URL";
           }
