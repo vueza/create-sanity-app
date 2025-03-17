@@ -17,7 +17,7 @@ type ImageType = PortableTextTypeComponentProps<
 >;
 
 export const Content = ({ value }: ContentProps) => (
-  <Container className="p-4">
+  <Container className="prose p-4">
     <PortableText
       components={{
         types: {
