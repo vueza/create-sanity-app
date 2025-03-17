@@ -4,7 +4,4 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [storybookNextJsPlugin(), tailwindcss()],
-  optimizeDeps: {
-    include: ["sb-original/default-loader", "sb-original/image-context"],
-  },
 });

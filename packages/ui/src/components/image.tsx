@@ -30,7 +30,7 @@ export const Image = ({ image, ...props }: ImageProps) => {
     blurDataURL: image.lqip ?? undefined,
   };
 
-  if (!(env.NEXT_PUBLIC_SANITY_DATASET && env.NEXT_PUBLIC_SANITY_PROJECT_ID)) {
+  if (env.NEXT_PUBLIC_APP_ENV === "docs") {
     return (
       <NextImage {...props} {...sharedProps} src={`/${image.asset._ref}`} />
     );
