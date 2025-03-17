@@ -4,6 +4,8 @@ import { withSeo } from "../hoc/with-seo";
 import { compose } from "../utils/compose";
 import { isUnique } from "../utils/is-unique";
 
+const slugRegex = /^[a-z0-9-]+$/;
+
 export const post = compose(
   defineType,
   withSeo,
@@ -29,7 +31,18 @@ export const post = compose(
         maxLength: 96,
         isUnique,
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.required().custom((slug) => {
+          if (!slug?.current) {
+            return true;
+          }
+
+          if (!slugRegex.test(slug.current)) {
+            return "Slug must be lowercase letters, numbers, and dashes.";
+          }
+
+          return true;
+        }),
     }),
 
     defineField({

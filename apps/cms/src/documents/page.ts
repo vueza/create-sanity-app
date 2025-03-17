@@ -4,7 +4,7 @@ import { withSeo } from "../hoc/with-seo";
 import { compose } from "../utils/compose";
 import { isUnique } from "../utils/is-unique";
 
-const slugRegex = /^[a-z]+(-[a-z]+|\/[a-z]+)*$/;
+const slugRegex = /^[a-z0-9]+(-[a-z0-9]+|\/[a-z0-9]+)*$/;
 
 export const page = compose(
   defineType,
@@ -34,7 +34,7 @@ export const page = compose(
       validation: (Rule) =>
         Rule.required().custom((slug) => {
           if (!slug?.current) {
-            return "Required";
+            return true;
           }
 
           if (slug.current === "/") {
@@ -42,7 +42,7 @@ export const page = compose(
           }
 
           if (!slugRegex.test(slug.current)) {
-            return "Slug must be lowercase letters, dashes, and slashes.";
+            return "Slug must be lowercase letters, numbers, dashes, and slashes.";
           }
 
           return true;
