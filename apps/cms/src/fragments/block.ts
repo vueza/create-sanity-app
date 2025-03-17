@@ -8,6 +8,8 @@ export const block = /* groq */ `{
   listItem,
   level,
   markDefs[] {
+    _key,
+    _type,
     _type == "link" => ${link}
   },
 },`;
