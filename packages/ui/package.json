@@ -4,8 +4,8 @@
   "dependencies": {
     "@company/internationalization": "workspace:*",
     "@portabletext/react": "3.2.1",
-    "next": "15.2.2",
-    "next-sanity": "9.9.4",
+    "next": "15.2.3",
+    "next-sanity": "9.9.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwind-merge": "3.0.2",
@@ -14,11 +14,11 @@
   "devDependencies": {
     "@company/cms": "workspace:*",
     "@company/config-typescript": "workspace:*",
-    "@types/react": "19.0.10",
+    "@types/react": "19.0.11",
     "@types/react-dom": "19.0.4",
-    "@vitest/coverage-v8": "3.0.8",
+    "@vitest/coverage-v8": "3.0.9",
     "typescript": "5.8.2",
-    "vitest": "3.0.8"
+    "vitest": "3.0.9"
   },
   "exports": {
     "./components/*": "./src/components/*.tsx"
