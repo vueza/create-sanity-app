@@ -1,3 +1,4 @@
+import { imageBuilder } from "@company/cms/client/image-builder";
 import { sanityFetch } from "@company/cms/client/live";
 import { getPage } from "@company/cms/queries/get-page";
 import { getPagesSlugs } from "@company/cms/queries/get-pages-slugs";
@@ -36,6 +37,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: data?.seo.title,
     description: data?.seo.title,
+    openGraph: {
+      title: data?.seo.title,
+      description: data?.seo.title,
+      images: data?.seo?.image?.asset?._ref
+        ? { url: imageBuilder.image(data.seo.image).auto("format").url() }
+        : [],
+    },
     robots: {
       index: data?.seo.index,
       follow: data?.seo.follow,

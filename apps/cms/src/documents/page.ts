@@ -50,6 +50,14 @@ export const page = compose(
     }),
 
     defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 5,
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "pageBuilder",
       title: "Page Builder",
       type: "pageBuilder",

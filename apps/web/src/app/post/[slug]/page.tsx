@@ -1,3 +1,4 @@
+import { imageBuilder } from "@company/cms/client/image-builder";
 import { sanityFetch } from "@company/cms/client/live";
 import { getPost } from "@company/cms/queries/get-post";
 import { getPostsSlugs } from "@company/cms/queries/get-posts-slugs";
@@ -30,6 +31,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: data?.seo.title,
     description: data?.seo.title,
+    openGraph: {
+      title: data?.seo.title,
+      description: data?.seo.title,
+      images: data?.seo?.image?.asset?._ref
+        ? { url: imageBuilder.image(data.seo.image).auto("format").url() }
+        : [],
+    },
     robots: {
       index: data?.seo.index,
       follow: data?.seo.follow,

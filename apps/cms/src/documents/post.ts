@@ -46,6 +46,14 @@ export const post = compose(
     }),
 
     defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 5,
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
       name: "author",
       title: "Author",
       type: "reference",
