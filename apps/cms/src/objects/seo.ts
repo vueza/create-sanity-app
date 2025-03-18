@@ -11,14 +11,28 @@ export const seo = defineType({
       name: "title",
       title: "Title",
       type: "string",
-      validation: (Rule) => [Rule.required()],
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
       name: "description",
       type: "text",
       title: "Description",
-      validation: (Rule) => [Rule.required()],
+      validation: (Rule) => Rule.required(),
+    }),
+
+    defineField({
+      name: "index",
+      type: "boolean",
+      title: "Index",
+      initialValue: true,
+    }),
+
+    defineField({
+      name: "follow",
+      type: "boolean",
+      title: "Follow",
+      initialValue: true,
     }),
   ],
   options: {

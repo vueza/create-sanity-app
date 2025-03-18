@@ -27,6 +27,8 @@ export const Default: Story = {
       seo: {
         title: "Title",
         description: "Description",
+        index: true,
+        follow: true,
       },
     },
   },

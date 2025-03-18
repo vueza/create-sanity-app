@@ -30,6 +30,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: data?.seo.title,
     description: data?.seo.title,
+    robots: {
+      index: data?.seo.index,
+      follow: data?.seo.follow,
+    },
   };
 }
 
