@@ -28,15 +28,25 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     stega: false,
   });
 
+  const images = data?.seo?.image?.asset?._ref
+    ? {
+        url: imageBuilder.image(data.seo.image).auto("format").url(),
+        alt: data.seo.image.altText,
+        width: data.seo.image.width ?? undefined,
+        height: data.seo.image.height ?? undefined,
+      }
+    : [];
+
   return {
     title: data?.seo.title,
     description: data?.seo.title,
     openGraph: {
       title: data?.seo.title,
       description: data?.seo.title,
-      images: data?.seo?.image?.asset?._ref
-        ? { url: imageBuilder.image(data.seo.image).auto("format").url() }
-        : [],
+      images,
+    },
+    twitter: {
+      images,
     },
     robots: {
       index: data?.seo.index,
