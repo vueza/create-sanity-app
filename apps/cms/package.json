@@ -4,23 +4,23 @@
   "dependencies": {
     "@sanity/icons": "3.7.0",
     "@sanity/image-url": "1.1.0",
-    "@sanity/vision": "3.79.0",
+    "@sanity/vision": "3.80.1",
     "@t3-oss/env-core": "0.12.0",
     "@t3-oss/env-nextjs": "0.12.0",
-    "groq": "3.79.0",
+    "groq": "3.80.1",
     "next-sanity": "9.9.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "sanity": "3.79.0",
+    "sanity": "3.80.1",
     "sanity-plugin-media": "3.0.1",
     "styled-components": "6.1.16",
     "zod": "3.24.2"
   },
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
-    "@sanity/assist": "3.2.0",
+    "@sanity/assist": "3.2.1",
     "@sanity/client": "6.28.3",
-    "@types/react": "19.0.11",
+    "@types/react": "19.0.12",
     "chokidar-cli": "3.0.0",
     "typescript": "5.8.2"
   },
