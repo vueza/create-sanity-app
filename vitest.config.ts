@@ -2,11 +2,11 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    passWithNoTests: true,
+    workspace: ["apps/*", "packages/*"],
     watch: false,
     coverage: {
       reporter: ["text", "json", "html"],
-      include: ["src/**/*"],
+      include: ["apps/**/src/**/*", "packages/**/src/**/*"],
     },
   },
 });

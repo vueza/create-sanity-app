@@ -22,7 +22,6 @@
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
     "@vitejs/plugin-react": "4.3.4",
-    "@vitest/coverage-v8": "3.0.9",
     "jsdom": "26.0.0",
     "typescript": "5.8.2",
     "vite-tsconfig-paths": "5.1.4",
@@ -32,11 +31,9 @@
     "build": "next build",
     "build:analyze": "ANALYZE=true pnpm build",
     "check-types": "tsc",
-    "clean": "rm -rf .next .turbo coverage node_modules next-env.d.ts tsconfig.tsbuildinfo",
-    "coverage": "vitest run --coverage",
+    "clean": "rm -rf .next .turbo node_modules next-env.d.ts tsconfig.tsbuildinfo",
     "dev": "next dev --turbopack",
     "start": "next start",
-    "test": "vitest",
-    "ui": "vitest ui"
+    "test": "vitest"
   }
 }

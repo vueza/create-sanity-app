@@ -76,7 +76,7 @@
       }
     },
     {
-      "include": ["env.ts"],
+      "include": ["env.ts", "*.config.mts"],
       "linter": {
         "rules": {
           "style": {

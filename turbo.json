@@ -34,16 +34,9 @@
       "dependsOn": ["^clean"],
       "cache": false
     },
-    "coverage": {
-      "dependsOn": ["^clean"],
-      "outputs": ["coverage/**"]
-    },
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "test": {
-      "dependsOn": ["^test"]
     },
     "watch": {
       "cache": false,
