@@ -22,7 +22,7 @@
     "@storybook/react": "8.6.8",
     "@storybook/test": "8.6.8",
     "@tailwindcss/vite": "4.0.15",
-    "@types/node": "22.13.11",
+    "@types/node": "22.13.13",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
     "@vitest/browser": "3.0.9",
@@ -31,7 +31,7 @@
     "storybook": "8.6.8",
     "storybook-dark-mode": "4.0.2",
     "typescript": "5.8.2",
-    "vite": "6.2.2",
+    "vite": "6.2.3",
     "vitest": "3.0.9"
   },
   "scripts": {
