@@ -25,9 +25,8 @@ export const Image = ({ image, ...props }: ImageProps) => {
     "alt" | "placeholder" | "blurDataURL"
   > = {
     alt: stegaClean(image.altText),
-    placeholder: image.lqip ? "blur" : undefined,
     // biome-ignore lint/style/useNamingConvention: next/image uses this name.
-    blurDataURL: image.lqip ?? undefined,
+    ...(image.lqip ? { placeholder: "blur", blurDataURL: image.lqip } : {}),
   };
 
   if (env.NEXT_PUBLIC_APP_ENV === "docs") {

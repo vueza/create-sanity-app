@@ -24,7 +24,7 @@
     "./components/*": "./src/components/*.tsx"
   },
   "scripts": {
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc",
     "clean": "rm -rf .turbo coverage node_modules",
     "coverage": "vitest run --coverage",
     "test": "vitest",
