@@ -1,4 +1,17 @@
 {
   "name": "@company/migration",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "devDependencies": {
+    "@company/config-typescript": "workspace:*",
+    "@portabletext/block-tools": "1.1.14",
+    "@sanity/migrate": "3.80.1",
+    "html-entities": "2.5.3",
+    "jsdom": "26.0.0",
+    "p-limit": "6.2.0",
+    "sanity": "3.80.1"
+  },
+  "scripts": {
+    "check-types": "tsc",
+    "clean": "rm -rf node_modules .turbo"
+  }
 }

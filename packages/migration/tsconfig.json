@@ -1,0 +1,5 @@
+{
+  "extends": "@company/config-typescript/sanity.json",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}

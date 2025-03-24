@@ -5,6 +5,9 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "Preserve",
     "moduleResolution": "bundler",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "declaration": false,
+    "declarationMap": false,
+    "composite": false
   }
 }

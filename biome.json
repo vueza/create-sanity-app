@@ -51,7 +51,8 @@
         "*.config.ts",
         "config.ts",
         "*.cli.ts",
-        "apps/web/src/app/**"
+        "apps/web/src/app/**",
+        "packages/migration/migrations/**"
       ],
       "linter": {
         "rules": {
