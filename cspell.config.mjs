@@ -27,5 +27,7 @@ export default {
     "hotspot",
     "rgba",
     "lqip",
+    "lefthook",
+    "vueza",
   ],
 };
