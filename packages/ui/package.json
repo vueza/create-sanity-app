@@ -4,7 +4,7 @@
   "dependencies": {
     "@company/internationalization": "workspace:*",
     "@portabletext/react": "3.2.1",
-    "next": "15.2.3",
+    "next": "15.2.4",
     "next-sanity": "9.9.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
