@@ -21,7 +21,7 @@
     "@storybook/experimental-nextjs-vite": "8.6.9",
     "@storybook/react": "8.6.9",
     "@storybook/test": "8.6.9",
-    "@tailwindcss/vite": "4.0.15",
+    "@tailwindcss/vite": "4.0.16",
     "@types/node": "22.13.13",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",

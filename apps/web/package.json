@@ -15,7 +15,7 @@
   "devDependencies": {
     "@company/config-tailwind": "workspace:*",
     "@company/config-typescript": "workspace:*",
-    "@tailwindcss/postcss": "4.0.15",
+    "@tailwindcss/postcss": "4.0.16",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.2.0",
     "@types/node": "22.13.13",
