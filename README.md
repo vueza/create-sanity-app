@@ -16,7 +16,7 @@ A full-stack template built with:
 ## Requirements
 
 - Node >= 22.14.0
-- PNPM >= 10.6.1
+- PNPM >= 10.7.0
 
 ## Installation
 
