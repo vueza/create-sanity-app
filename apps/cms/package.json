@@ -19,7 +19,7 @@
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
     "@sanity/assist": "3.2.2",
-    "@sanity/client": "6.28.3",
+    "@sanity/client": "6.28.4",
     "@types/react": "19.0.12",
     "chokidar-cli": "3.0.0",
     "typescript": "5.8.2"
