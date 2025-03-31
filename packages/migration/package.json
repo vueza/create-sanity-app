@@ -5,7 +5,7 @@
     "@company/config-typescript": "workspace:*",
     "@portabletext/block-tools": "1.1.15",
     "@sanity/migrate": "3.81.0",
-    "html-entities": "2.5.6",
+    "html-entities": "2.6.0",
     "jsdom": "26.0.0",
     "p-limit": "6.2.0",
     "sanity": "3.81.0"
