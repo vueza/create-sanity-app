@@ -18,10 +18,12 @@ export async function generateStaticParams() {
   });
 
   return [
-    { params: { slug: undefined } },
-    ...data.map((page) => ({
-      params: { slug: page.slug.split("/") },
-    })),
+    { slug: [] },
+    ...data
+      .filter((page) => page.slug !== "/")
+      .map((page) => ({
+        slug: page.slug.split("/"),
+      })),
   ];
 }
 
