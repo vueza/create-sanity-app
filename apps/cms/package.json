@@ -22,7 +22,7 @@
     "@sanity/client": "6.28.4",
     "@types/react": "19.1.0",
     "chokidar-cli": "3.0.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "exports": {
     "./client/*": "./src/client/*.ts",
