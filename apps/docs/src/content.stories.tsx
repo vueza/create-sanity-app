@@ -1,5 +1,6 @@
 import { Content } from "@company/ui/components/content";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Suspense } from "react";
 
 const meta = {
   title: "Content",
@@ -8,6 +9,13 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <Suspense>
+        <Story />
+      </Suspense>
+    ),
+  ],
 } satisfies Meta<typeof Content>;
 
 export default meta;
