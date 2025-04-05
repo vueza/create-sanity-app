@@ -3,6 +3,7 @@ import { sanityFetch } from "@company/cms/client/live";
 import { getPost } from "@company/cms/queries/get-post";
 import { getPostsSlugs } from "@company/cms/queries/get-posts-slugs";
 import { Content } from "@company/ui/components/content";
+import { getImageDimensions } from "@sanity/asset-utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -29,12 +30,14 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   });
 
   const images = data?.seo?.image?.asset?._ref
-    ? {
-        url: imageBuilder.image(data.seo.image).auto("format").url(),
-        alt: data.seo.image.altText,
-        width: data.seo.image.width ?? undefined,
-        height: data.seo.image.height ?? undefined,
-      }
+    ? [
+        {
+          url: imageBuilder.image(data.seo.image).auto("format").url(),
+          alt: data.seo.image.altText,
+          width: getImageDimensions(data.seo.image.asset).width,
+          height: getImageDimensions(data.seo.image.asset).height,
+        },
+      ]
     : [];
 
   return {

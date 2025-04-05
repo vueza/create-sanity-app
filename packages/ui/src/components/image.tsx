@@ -1,6 +1,7 @@
 import { env } from "@company/cms/client/env";
 import { imageBuilder } from "@company/cms/client/image-builder";
 import type { GetPostResult } from "@company/cms/types";
+import { getImageDimensions } from "@sanity/asset-utils";
 import { stegaClean } from "next-sanity";
 import {
   type ImageProps as BaseImageProps,
@@ -21,6 +22,8 @@ export const Image = ({ image, ...props }: ImageProps) => {
     return null;
   }
 
+  const { width, height } = getImageDimensions(image.asset);
+
   const sharedProps: Pick<
     BaseImageProps,
     "alt" | "placeholder" | "blurDataURL"
@@ -31,14 +34,18 @@ export const Image = ({ image, ...props }: ImageProps) => {
     ...(props.fill
       ? { fill: true }
       : {
-          width: props.width ?? image.width,
-          height: props.height ?? image.height,
+          width: props.width ?? width,
+          height: props.height ?? height,
         }),
   };
 
   if (env.NEXT_PUBLIC_APP_ENV === "docs") {
     return (
-      <NextImage {...props} {...sharedProps} src={`/${image.asset._ref}`} />
+      <NextImage
+        {...props}
+        {...sharedProps}
+        src={`/${image.asset._ref}.webp`}
+      />
     );
   }
 
@@ -51,10 +58,7 @@ export const Image = ({ image, ...props }: ImageProps) => {
         .dpr(2)
         .auto("format")
         .quality(Number(props.quality ?? 80))
-        .size(
-          Number(props.width ?? image.width),
-          Number(props.height ?? image.height),
-        )
+        .size(Number(props.width ?? width), Number(props.height ?? height))
         .fit("max")
         .format("webp")
         .url()}
