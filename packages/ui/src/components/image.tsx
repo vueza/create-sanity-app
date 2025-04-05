@@ -13,6 +13,7 @@ interface ImageProps extends Omit<BaseImageProps, "src" | "alt"> {
     NonNullable<GetPostResult>["content"][number],
     { _type: "image" }
   >;
+  alt?: string;
 }
 
 export const Image = ({ image, ...props }: ImageProps) => {
@@ -24,9 +25,15 @@ export const Image = ({ image, ...props }: ImageProps) => {
     BaseImageProps,
     "alt" | "placeholder" | "blurDataURL"
   > = {
-    alt: stegaClean(image.altText),
+    alt: props.alt ?? stegaClean(image.altText),
     // biome-ignore lint/style/useNamingConvention: next/image uses this name.
     ...(image.lqip ? { placeholder: "blur", blurDataURL: image.lqip } : {}),
+    ...(props.fill
+      ? { fill: true }
+      : {
+          width: props.width ?? image.width,
+          height: props.height ?? image.height,
+        }),
   };
 
   if (env.NEXT_PUBLIC_APP_ENV === "docs") {
@@ -35,10 +42,22 @@ export const Image = ({ image, ...props }: ImageProps) => {
     );
   }
 
-  let src = imageBuilder.image(image).auto("format");
-  if (props.width && props.height) {
-    src = src.width(Number(props.width)).height(Number(props.height));
-  }
-
-  return <SanityImage {...props} {...sharedProps} src={src.url()} />;
+  return (
+    <SanityImage
+      {...props}
+      {...sharedProps}
+      src={imageBuilder
+        .image(image)
+        .dpr(2)
+        .auto("format")
+        .quality(Number(props.quality ?? 80))
+        .size(
+          Number(props.width ?? image.width),
+          Number(props.height ?? image.height),
+        )
+        .fit("max")
+        .format("webp")
+        .url()}
+    />
+  );
 };
