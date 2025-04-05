@@ -5,6 +5,7 @@
     "@company/cms": "workspace:*",
     "@company/ui": "workspace:*",
     "@next/bundle-analyzer": "15.2.4",
+    "@sanity/asset-utils": "2.2.1",
     "next": "15.2.4",
     "next-sanity": "9.9.9",
     "postcss": "8.5.3",
