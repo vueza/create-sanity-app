@@ -1,10 +1,18 @@
 import { BlockRenderer } from "@company/ui/components/block-renderer";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Suspense } from "react";
 
 const meta = {
   title: "BlockRenderer",
   component: BlockRenderer,
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <Suspense>
+        <Story />
+      </Suspense>
+    ),
+  ],
 } satisfies Meta<typeof BlockRenderer>;
 
 export default meta;

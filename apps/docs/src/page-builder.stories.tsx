@@ -1,10 +1,18 @@
 import { PageBuilder } from "@company/ui/components/page-builder";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Suspense } from "react";
 
 const meta = {
   title: "PageBuilder",
   component: PageBuilder,
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <Suspense>
+        <Story />
+      </Suspense>
+    ),
+  ],
 } satisfies Meta<typeof PageBuilder>;
 
 export default meta;

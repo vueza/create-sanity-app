@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "Layout",
   component: Layout,
-  tags: ["autodocs"],
+  tags: ["autodocs", "experimental"],
   decorators: [
     (Story) => (
       <div className="flex min-h-screen flex-col">

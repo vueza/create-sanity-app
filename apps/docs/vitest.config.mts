@@ -6,7 +6,14 @@ import { defineConfig } from "vitest/config";
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [storybookTest({ configDir: path.join(dirname, ".storybook") })],
+  plugins: [
+    storybookTest({
+      configDir: path.join(dirname, ".storybook"),
+      tags: {
+        exclude: ["experimental"],
+      },
+    }),
+  ],
   test: {
     env: {
       NEXT_PUBLIC_APP_ENV: "docs",

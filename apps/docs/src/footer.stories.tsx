@@ -5,7 +5,7 @@ import { Suspense } from "react";
 const meta = {
   title: "Footer",
   component: Footer,
-  tags: ["autodocs"],
+  tags: ["autodocs", "experimental"],
   decorators: [
     (Story) => (
       <Suspense>
