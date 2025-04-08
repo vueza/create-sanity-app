@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
-    "@portabletext/block-tools": "1.1.16",
-    "@sanity/migrate": "3.82.0",
+    "@portabletext/block-tools": "1.1.17",
+    "@sanity/migrate": "3.83.0",
     "html-entities": "2.6.0",
     "jsdom": "26.0.0",
     "p-limit": "6.2.0",
-    "sanity": "3.82.0"
+    "sanity": "3.83.0"
   },
   "scripts": {
     "check-types": "tsc",
