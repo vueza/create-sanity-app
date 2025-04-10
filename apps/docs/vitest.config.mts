@@ -9,9 +9,6 @@ export default defineConfig({
   plugins: [
     storybookTest({
       configDir: path.join(dirname, ".storybook"),
-      tags: {
-        exclude: ["experimental"],
-      },
     }),
   ],
   test: {
@@ -30,5 +27,9 @@ export default defineConfig({
       provider: "playwright",
     },
     setupFiles: [".storybook/vitest.setup.ts"],
+  },
+  optimizeDeps: {
+    // NOTE: https://github.com/storybookjs/storybook/issues/31085
+    include: ["sb-original/default-loader", "sb-original/image-context"],
   },
 });
