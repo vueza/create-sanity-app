@@ -6,7 +6,7 @@
     "@portabletext/react": "3.2.1",
     "@sanity/asset-utils": "2.2.1",
     "next": "15.3.0",
-    "next-sanity": "9.10.1",
+    "next-sanity": "9.10.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "3.2.0",
@@ -15,7 +15,7 @@
   "devDependencies": {
     "@company/cms": "workspace:*",
     "@company/config-typescript": "workspace:*",
-    "@types/react": "19.1.0",
+    "@types/react": "19.1.1",
     "@types/react-dom": "19.1.2",
     "typescript": "5.8.3",
     "vitest": "3.1.1"
