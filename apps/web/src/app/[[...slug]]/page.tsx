@@ -50,10 +50,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   return {
     title: data?.seo.title,
-    description: data?.seo.title,
+    description: data?.seo.description,
     openGraph: {
       title: data?.seo.title,
-      description: data?.seo.title,
+      description: data?.seo.description,
       images,
     },
     twitter: {
