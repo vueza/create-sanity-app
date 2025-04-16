@@ -30,6 +30,6 @@ export interface ButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
     VariantProps<typeof button> {}
 
-export const Button = ({ size, color, ...props }: ButtonProps) => (
-  <button {...props} className={button({ size, color })} />
+export const Button = ({ size, color, className, ...props }: ButtonProps) => (
+  <button {...props} className={button({ size, color, className })} />
 );

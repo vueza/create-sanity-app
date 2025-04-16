@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@company/ui/components/button";
 import { useIsPresentationTool } from "next-sanity/hooks";
 import { useRouter } from "next/navigation";
 import { disableDraftMode } from "../actions/draft-mode-disable";
@@ -13,15 +14,15 @@ export const DraftModeButton = () => {
   }
 
   return (
-    <button
+    <Button
       type="button"
       onClick={async () => {
         await disableDraftMode();
         router.refresh();
       }}
-      className="fixed right-4 bottom-4 rounded-lg bg-gray-800 px-4 py-2 text-white hover:bg-gray-700" // editorconfig-checker-disable-line
+      className="fixed right-4 bottom-4"
     >
       Disable draft mode
-    </button>
+    </Button>
   );
 };
