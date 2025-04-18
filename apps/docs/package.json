@@ -27,12 +27,12 @@
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "@vitest/browser": "3.1.1",
-    "next": "15.3.0",
-    "playwright": "1.51.1",
+    "next": "15.3.1",
+    "playwright": "1.52.0",
     "storybook": "8.6.12",
     "storybook-dark-mode": "4.0.2",
     "typescript": "5.8.3",
-    "vite": "6.3.1",
+    "vite": "6.3.2",
     "vitest": "3.1.1"
   },
   "scripts": {
