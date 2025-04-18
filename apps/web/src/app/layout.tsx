@@ -34,7 +34,7 @@ export default async function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-title" content="Company" />
       </head>
-      <body className="flex min-h-screen flex-col">
+      <body className="isolate flex min-h-screen flex-col">
         <Layout title={data.title}>{children}</Layout>
 
         {isDraftMode && (

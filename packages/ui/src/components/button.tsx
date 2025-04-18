@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ComponentPropsWithoutRef, ElementType } from "react";
 import { type VariantProps, tv } from "tailwind-variants";
 
 const button = tv({
@@ -26,10 +26,21 @@ const button = tv({
   },
 });
 
-export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color">,
-    VariantProps<typeof button> {}
+type ButtonProps<C extends ElementType = "button"> = {
+  as?: C;
+} & VariantProps<typeof button> &
+  Omit<ComponentPropsWithoutRef<C>, "color">;
 
-export const Button = ({ size, color, className, ...props }: ButtonProps) => (
-  <button {...props} className={button({ size, color, className })} />
-);
+export const Button = <C extends ElementType = "button">({
+  as,
+  size,
+  color,
+  className,
+  ...props
+}: ButtonProps<C>) => {
+  const Component = as ?? "button";
+
+  return (
+    <Component className={button({ size, color, className })} {...props} />
+  );
+};
