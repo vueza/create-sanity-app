@@ -5,7 +5,8 @@ import {
   defineField,
   defineType,
 } from "sanity";
-import { type LinkValidationContext, linkDocumentTypes } from "./link";
+import type { Link } from "../../sanity.types";
+import { linkDocumentTypes } from "./link";
 
 const annotations: BlockMarksDefinition["annotations"] = [
   {
@@ -38,9 +39,9 @@ const annotations: BlockMarksDefinition["annotations"] = [
           Rule.uri({
             scheme: ["http", "https", "mailto", "tel"],
             allowRelative: true,
-            // @ts-expect-error -- parent is unknown type in ValidationContext
-          }).custom((value, context: LinkValidationContext) => {
-            if (context.parent?.type === "href" && !value) {
+          }).custom((value, context) => {
+            const parent = context.parent as Link;
+            if (parent?.type === "href" && !value) {
               return "URL is required when type is URL";
             }
 
@@ -56,9 +57,9 @@ const annotations: BlockMarksDefinition["annotations"] = [
           to: [{ type: name }],
           hidden: ({ parent }) => parent?.type !== name,
           validation: (Rule) =>
-            // @ts-expect-error -- parent is unknown type in ValidationContext
-            Rule.custom((value, context: LinkValidationContext) => {
-              if (context.parent?.type === name && !value) {
+            Rule.custom((value, context) => {
+              const parent = context.parent as Link;
+              if (parent?.type === name && !value) {
                 return `Reference is required when type is ${title}`;
               }
 
