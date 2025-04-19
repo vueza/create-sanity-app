@@ -5,7 +5,7 @@ interface MainProps {
 }
 
 export const Main = ({ children }: MainProps) => (
-  <main id="main" tabIndex={-1}>
+  <main id="main" className="scroll-mt-20" tabIndex={-1}>
     {children}
   </main>
 );

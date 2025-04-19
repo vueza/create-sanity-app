@@ -16,7 +16,7 @@ export const Header = async ({ title }: HeaderProps) => {
   } = await getDictionary("en");
 
   return (
-    <header className="bg-black py-10 text-white">
+    <header className="sticky top-0 bg-black py-5 text-white">
       <Button
         as={Link}
         href="#main"
