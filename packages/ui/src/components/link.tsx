@@ -5,9 +5,16 @@ interface LinkProps extends ComponentProps<typeof NextLink> {
   href: string;
 }
 
-export const Link = (props: LinkProps) => (
-  <NextLink
-    {...props}
-    rel={props.href.startsWith("http") ? "noopener noreferrer" : undefined}
-  />
-);
+const isExternalLinkRegex = /^(https?:)?\/\//;
+
+export const Link = (props: LinkProps) => {
+  const isExternalLink = isExternalLinkRegex.test(props.href);
+
+  return (
+    <NextLink
+      {...props}
+      rel={isExternalLink ? "noopener noreferrer" : undefined}
+      target={isExternalLink ? "_blank" : undefined}
+    />
+  );
+};
