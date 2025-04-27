@@ -6,10 +6,10 @@
     "@turbo/gen": "2.5.2",
     "@vitest/coverage-v8": "3.1.2",
     "@vitest/ui": "3.1.2",
-    "cspell": "8.19.2",
+    "cspell": "8.19.3",
     "editorconfig-checker": "6.0.1",
     "lefthook": "1.11.11",
-    "syncpack": "13.0.3",
+    "syncpack": "13.0.4",
     "turbo": "2.5.2",
     "vitest": "3.1.2"
   },
