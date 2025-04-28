@@ -8,7 +8,7 @@
     "@vitest/ui": "3.1.2",
     "cspell": "8.19.3",
     "editorconfig-checker": "6.0.1",
-    "lefthook": "1.11.11",
+    "lefthook": "1.11.12",
     "syncpack": "13.0.4",
     "turbo": "2.5.2",
     "vitest": "3.1.2"
