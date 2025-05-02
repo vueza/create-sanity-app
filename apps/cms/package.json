@@ -5,10 +5,10 @@
     "@sanity/icons": "3.7.0",
     "@sanity/image-url": "1.1.0",
     "@sanity/vision": "3.87.0",
-    "@t3-oss/env-core": "0.13.0",
-    "@t3-oss/env-nextjs": "0.13.0",
+    "@t3-oss/env-core": "0.13.4",
+    "@t3-oss/env-nextjs": "0.13.4",
     "groq": "3.87.0",
-    "next-sanity": "9.10.2",
+    "next-sanity": "9.10.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sanity": "3.87.0",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
     "@sanity/assist": "4.2.0",
-    "@sanity/client": "6.29.1",
+    "@sanity/client": "7.0.0",
     "@types/react": "19.1.2",
     "chokidar-cli": "3.0.0",
     "typescript": "5.8.3"
