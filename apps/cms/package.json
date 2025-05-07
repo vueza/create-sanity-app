@@ -4,14 +4,14 @@
   "dependencies": {
     "@sanity/icons": "3.7.0",
     "@sanity/image-url": "1.1.0",
-    "@sanity/vision": "3.87.1",
+    "@sanity/vision": "3.88.0",
     "@t3-oss/env-core": "0.13.4",
     "@t3-oss/env-nextjs": "0.13.4",
-    "groq": "3.87.1",
+    "groq": "3.88.0",
     "next-sanity": "9.10.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sanity": "3.87.1",
+    "sanity": "3.88.0",
     "sanity-plugin-media": "3.0.2",
     "styled-components": "6.1.17",
     "zod": "3.24.4"
