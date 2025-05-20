@@ -4,17 +4,17 @@
   "dependencies": {
     "@sanity/icons": "3.7.0",
     "@sanity/image-url": "1.1.0",
-    "@sanity/vision": "3.88.3",
+    "@sanity/vision": "3.89.0",
     "@t3-oss/env-core": "0.13.4",
     "@t3-oss/env-nextjs": "0.13.4",
-    "groq": "3.88.3",
+    "groq": "3.89.0",
     "next-sanity": "9.11.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sanity": "3.88.3",
+    "sanity": "3.89.0",
     "sanity-plugin-media": "3.0.2",
     "styled-components": "6.1.18",
-    "zod": "3.25.1"
+    "zod": "3.25.7"
   },
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
