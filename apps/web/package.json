@@ -11,7 +11,7 @@
     "postcss": "8.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "zod": "3.25.20"
+    "zod": "3.25.23"
   },
   "devDependencies": {
     "@company/config-tailwind": "workspace:*",
@@ -22,7 +22,7 @@
     "@types/node": "22.15.21",
     "@types/react": "19.1.5",
     "@types/react-dom": "19.1.5",
-    "@vitejs/plugin-react": "4.4.1",
+    "@vitejs/plugin-react": "4.5.0",
     "jsdom": "26.1.0",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4",
