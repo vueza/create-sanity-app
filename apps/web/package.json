@@ -4,14 +4,14 @@
   "dependencies": {
     "@company/cms": "workspace:*",
     "@company/ui": "workspace:*",
-    "@next/bundle-analyzer": "15.3.2",
+    "@next/bundle-analyzer": "15.4.0-canary.51",
     "@sanity/asset-utils": "2.2.1",
     "next": "15.3.2",
     "next-sanity": "9.11.1",
     "postcss": "8.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "zod": "3.25.23"
+    "zod": "3.25.28"
   },
   "devDependencies": {
     "@company/config-tailwind": "workspace:*",
