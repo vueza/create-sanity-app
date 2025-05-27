@@ -16,7 +16,7 @@
   "devDependencies": {
     "@company/cms": "workspace:*",
     "@company/config-typescript": "workspace:*",
-    "@types/react": "19.1.5",
+    "@types/react": "19.1.6",
     "@types/react-dom": "19.1.5",
     "typescript": "5.8.3",
     "vitest": "3.1.4"
