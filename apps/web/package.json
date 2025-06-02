@@ -11,7 +11,7 @@
     "postcss": "8.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "zod": "3.25.46"
+    "zod": "3.25.48"
   },
   "devDependencies": {
     "@company/config-tailwind": "workspace:*",
@@ -26,7 +26,7 @@
     "jsdom": "26.1.0",
     "typescript": "5.8.3",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.1.4"
+    "vitest": "3.2.0"
   },
   "scripts": {
     "build": "next build",
