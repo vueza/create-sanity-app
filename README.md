@@ -1,4 +1,4 @@
-# Next.js Monorepo with Sanity CMS
+# Next.js Monorepo with Sanity Content Operating System
 
 A full-stack template built with:
 
