@@ -17,9 +17,9 @@
     "@company/cms": "workspace:*",
     "@company/config-typescript": "workspace:*",
     "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5",
+    "@types/react-dom": "19.1.6",
     "typescript": "5.8.3",
-    "vitest": "3.2.0"
+    "vitest": "3.2.1"
   },
   "exports": {
     "./components/*": "./src/components/*.tsx"
