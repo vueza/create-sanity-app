@@ -1,5 +1,5 @@
 import { PageBuilder } from "@company/ui/components/page-builder";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Suspense } from "react";
 
 const meta = {

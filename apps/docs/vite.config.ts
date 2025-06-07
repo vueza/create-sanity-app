@@ -1,4 +1,4 @@
-import { storybookNextJsPlugin } from "@storybook/experimental-nextjs-vite/vite-plugin"; /* editorconfig-checker-disable-line */
+import { storybookNextJsPlugin } from "@storybook/nextjs-vite/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 

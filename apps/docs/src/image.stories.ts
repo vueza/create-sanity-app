@@ -1,5 +1,5 @@
 import { Image } from "@company/ui/components/image";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   title: "Image",

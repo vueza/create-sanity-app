@@ -1,5 +1,5 @@
 import { Header } from "@company/ui/components/header";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Suspense } from "react";
 
 const meta = {

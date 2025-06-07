@@ -1,5 +1,5 @@
 import { Footer } from "@company/ui/components/footer";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Suspense } from "react";
 
 const meta = {

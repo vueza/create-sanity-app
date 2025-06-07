@@ -1,5 +1,5 @@
 import { Main } from "@company/ui/components/main";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   title: "Main",

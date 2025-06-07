@@ -1,6 +1,6 @@
 import { Button } from "@company/ui/components/button";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { fn } from "storybook/test";
 
 const meta = {
   title: "Button",
