@@ -19,7 +19,7 @@
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.6",
     "typescript": "5.8.3",
-    "vitest": "3.2.2"
+    "vitest": "3.2.3"
   },
   "exports": {
     "./components/*": "./src/components/*.tsx"
