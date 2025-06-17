@@ -28,8 +28,31 @@ export const Header = async ({ title }: HeaderProps) => {
         <div>
           {label} for <span>{title}</span>
         </div>
+        
+        {/* Desktop Menu - hidden on mobile */}
+        <nav aria-label="Primary navigation" className="hidden md:block">
+          <ul className="flex space-x-6">
+            <li>
+              <a href="#1" className="hover:text-gray-300 transition-colors">
+                Link 1
+              </a>
+            </li>
+            <li>
+              <a href="#2" className="hover:text-gray-300 transition-colors">
+                Link 2
+              </a>
+            </li>
+            <li>
+              <a href="#3" className="hover:text-gray-300 transition-colors">
+                Link 3
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Mobile Menu - hidden on desktop */}
         <Dialog.Root>
-          <Dialog.Trigger aria-label="Open menu" className="p-2">
+          <Dialog.Trigger aria-label="Open menu" className="p-2 md:hidden">
             <Bars3 />
           </Dialog.Trigger>
           <Dialog.Portal>
