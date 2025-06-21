@@ -2,7 +2,7 @@
   "name": "@company/cms",
   "version": "0.0.0",
   "dependencies": {
-    "@sanity/icons": "3.7.0",
+    "@sanity/icons": "3.7.4",
     "@sanity/image-url": "1.1.0",
     "@sanity/vision": "3.93.0",
     "@t3-oss/env-core": "0.13.8",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
-    "@sanity/assist": "4.3.0",
+    "@sanity/assist": "4.3.2",
     "@sanity/client": "7.6.0",
     "@types/react": "19.1.8",
     "chokidar-cli": "3.0.0",
