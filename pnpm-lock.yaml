@@ -58,10 +58,10 @@ importers:
         version: 3.97.1(@babel/runtime@7.27.6)(@codemirror/lint@6.8.4)(@codemirror/theme-one-dark@6.1.2)(@emotion/is-prop-valid@1.2.2)(codemirror@6.0.1)(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       '@t3-oss/env-core':
         specifier: 0.13.8
-        version: 0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.74)
+        version: 0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.75)
       '@t3-oss/env-nextjs':
         specifier: 0.13.8
-        version: 0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.74)
+        version: 0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.75)
       groq:
         specifier: 3.97.1
         version: 3.97.1
@@ -84,8 +84,8 @@ importers:
         specifier: 6.1.19
         version: 6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       zod:
-        specifier: 3.25.74
-        version: 3.25.74
+        specifier: 3.25.75
+        version: 3.25.75
     devDependencies:
       '@company/config-typescript':
         specifier: workspace:*
@@ -215,8 +215,8 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
       zod:
-        specifier: 3.25.74
-        version: 3.25.74
+        specifier: 3.25.75
+        version: 3.25.75
     devDependencies:
       '@company/config-tailwind':
         specifier: workspace:*
@@ -281,8 +281,8 @@ importers:
         specifier: workspace:*
         version: link:../config-typescript
       '@portabletext/block-tools':
-        specifier: 1.1.34
-        version: 1.1.34(@sanity/types@3.97.1(@types/react@19.1.8))(@types/react@19.1.8)
+        specifier: 1.1.35
+        version: 1.1.35(@sanity/types@3.97.1(@types/react@19.1.8))(@types/react@19.1.8)
       '@sanity/migrate':
         specifier: 3.97.1
         version: 3.97.1(@types/react@19.1.8)
@@ -2391,6 +2391,12 @@ packages:
     resolution: {integrity: sha512-Km4ZbDafiOdREy+QxsEXIqVFuL+tPXqETUjlr7BJ7sYfoEeSflyeSx0A13X335QauOQTaajKdqQxwbfV1VjqUg==}
     peerDependencies:
       '@sanity/types': ^3.96.0
+      '@types/react': 18 || 19
+
+  '@portabletext/block-tools@1.1.35':
+    resolution: {integrity: sha512-OlUSRpOi4dNkaIX9ZLDWf54UQTXOnPpiaCYevBrLgirb+uctkwLo0xSXF5qDtmEln13bTEj/F/HeT+tRZYz3jg==}
+    peerDependencies:
+      '@sanity/types': ^3.97.1
       '@types/react': 18 || 19
 
   '@portabletext/editor@1.55.16':
@@ -7837,8 +7843,8 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
-  zod@3.25.74:
-    resolution: {integrity: sha512-J8poo92VuhKjNknViHRAIuuN6li/EwFbAC8OedzI8uxpEPGiXHGQu9wemIAioIpqgfB4SySaJhdk0mH5Y4ICBg==}
+  zod@3.25.75:
+    resolution: {integrity: sha512-OhpzAmVzabPOL6C3A3gpAifqr9MqihV/Msx3gor2b2kviCgcb+HM9SEOpMWwwNp9MRunWnhtAKUoo0AHhjyPPg==}
 
   zustand@5.0.3:
     resolution: {integrity: sha512-14fwWQtU3pH4dE0dOpdMiWjddcH+QzKIgk1cl8epwSE7yag43k/AD/m4L6+K7DytAOr9gGBe3/EXj9g7cdostg==}
@@ -9857,8 +9863,8 @@ snapshots:
 
   '@jridgewell/source-map@0.3.6':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.8
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/gen-mapping': 0.3.12
+      '@jridgewell/trace-mapping': 0.3.29
     optional: true
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
@@ -10072,6 +10078,13 @@ snapshots:
   '@polka/url@1.0.0-next.28': {}
 
   '@portabletext/block-tools@1.1.34(@sanity/types@3.97.1(@types/react@19.1.8))(@types/react@19.1.8)':
+    dependencies:
+      '@sanity/types': 3.97.1(@types/react@19.1.8)(debug@4.4.1)
+      '@types/react': 19.1.8
+      get-random-values-esm: 1.0.2
+      lodash: 4.17.21
+
+  '@portabletext/block-tools@1.1.35(@sanity/types@3.97.1(@types/react@19.1.8))(@types/react@19.1.8)':
     dependencies:
       '@sanity/types': 3.97.1(@types/react@19.1.8)(debug@4.4.1)
       '@types/react': 19.1.8
@@ -10312,7 +10325,7 @@ snapshots:
       groq-js: 1.17.1
       json5: 2.2.3
       tsconfig-paths: 4.2.0
-      zod: 3.25.74
+      zod: 3.25.75
     transitivePeerDependencies:
       - supports-color
 
@@ -11031,21 +11044,21 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.74)':
+  '@t3-oss/env-core@0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.75)':
     optionalDependencies:
       arktype: 2.1.20
       typescript: 5.8.3
       valibot: 1.1.0(typescript@5.8.3)
-      zod: 3.25.74
+      zod: 3.25.75
 
-  '@t3-oss/env-nextjs@0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.74)':
+  '@t3-oss/env-nextjs@0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.75)':
     dependencies:
-      '@t3-oss/env-core': 0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.74)
+      '@t3-oss/env-core': 0.13.8(arktype@2.1.20)(typescript@5.8.3)(valibot@1.1.0(typescript@5.8.3))(zod@3.25.75)
     optionalDependencies:
       arktype: 2.1.20
       typescript: 5.8.3
       valibot: 1.1.0(typescript@5.8.3)
-      zod: 3.25.74
+      zod: 3.25.75
 
   '@tailwindcss/node@4.1.11':
     dependencies:
@@ -14976,7 +14989,7 @@ snapshots:
       rxjs: 7.8.2
       sanity: 3.97.1(@emotion/is-prop-valid@1.2.2)(@types/node@24.0.10)(@types/react@19.1.8)(immer@10.1.1)(jiti@2.4.2)(lightningcss@1.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(styled-components@6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.8.0)
       styled-components: 6.1.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      zod: 3.25.74
+      zod: 3.25.75
     transitivePeerDependencies:
       - '@types/react'
       - debug
@@ -16277,7 +16290,7 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.7.0
 
-  zod@3.25.74: {}
+  zod@3.25.75: {}
 
   zustand@5.0.3(@types/react@19.1.8)(immer@10.1.1)(react@19.1.0)(use-sync-external-store@1.5.0(react@19.1.0)):
     optionalDependencies:

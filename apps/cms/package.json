@@ -14,7 +14,7 @@
     "sanity": "3.97.1",
     "sanity-plugin-media": "3.0.3",
     "styled-components": "6.1.19",
-    "zod": "3.25.74"
+    "zod": "3.25.75"
   },
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
