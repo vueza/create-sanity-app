@@ -15,7 +15,6 @@ type Context = ResolveProductionUrlContext & {
 };
 
 export const document: DocumentPluginOptions = {
-  // biome-ignore lint/suspicious/useAwait: Sanity types use await
   productionUrl: async (prev, { document }: Context) => {
     if (document._type === "redirect" && document.source) {
       return `${env.SANITY_STUDIO_PREVIEW_URL}/${document.source}`;

@@ -1,19 +1,21 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+  "root": true,
   "files": {
-    "ignore": [
-      "node_modules",
-      ".turbo",
-      ".next",
-      "next-env.d.ts",
-      "tsconfig.tsbuildinfo",
-      "pnpm-lock.yaml",
-      "storybook-static",
-      "coverage",
-      "dist",
-      ".sanity",
-      "sanity.types.ts",
-      "app.css"
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/.turbo",
+      "!**/.next",
+      "!**/next-env.d.ts",
+      "!**/tsconfig.tsbuildinfo",
+      "!**/pnpm-lock.yaml",
+      "!**/storybook-static",
+      "!**/coverage",
+      "!**/dist",
+      "!**/.sanity",
+      "!**/sanity.types.ts",
+      "!**/app.css"
     ]
   },
   "formatter": {
@@ -22,8 +24,14 @@
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "next": "all",
+      "react": "all",
+      "test": "all",
+      "project": "all"
+    },
     "rules": {
-      "all": true,
+      "recommended": true,
       "correctness": {
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
@@ -45,14 +53,14 @@
   },
   "overrides": [
     {
-      "include": [
-        "*.config.mjs",
-        "*.config.mts",
-        "*.config.ts",
-        "config.ts",
-        "*.cli.ts",
-        "apps/web/src/app/**",
-        "packages/migration/migrations/**"
+      "includes": [
+        "**/*.config.mjs",
+        "**/*.config.mts",
+        "**/*.config.ts",
+        "**/config.ts",
+        "**/*.cli.ts",
+        "**/apps/web/src/app/**",
+        "**/packages/migration/migrations/**"
       ],
       "linter": {
         "rules": {
@@ -63,21 +71,23 @@
       }
     },
     {
-      "include": ["apps/docs/**"],
+      "includes": ["**/apps/docs/**"],
       "linter": {
         "rules": {
           "style": {
-            "noDefaultExport": "off",
-            "noNamespaceImport": "off"
+            "noDefaultExport": "off"
           },
           "correctness": {
             "noNodejsModules": "off"
+          },
+          "performance": {
+            "noNamespaceImport": "off"
           }
         }
       }
     },
     {
-      "include": ["env.ts", "*.config.mts"],
+      "includes": ["**/env.ts", "**/*.config.mts"],
       "linter": {
         "rules": {
           "style": {

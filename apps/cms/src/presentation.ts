@@ -1,7 +1,7 @@
 import {
-  type PresentationPluginOptions,
   defineDocuments,
   defineLocations,
+  type PresentationPluginOptions,
 } from "sanity/presentation";
 import { env } from "./env";
 

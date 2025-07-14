@@ -23,7 +23,6 @@ const config: StorybookConfig = {
   },
   staticDirs: ["../public"],
   features: {
-    // biome-ignore lint/style/useNamingConvention: key is set by Storybook
     experimentalRSC: true,
   },
 };

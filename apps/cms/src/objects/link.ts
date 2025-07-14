@@ -1,4 +1,4 @@
-import { type Rule, defineField, defineType } from "sanity";
+import { defineField, defineType, type Rule } from "sanity";
 import type { Link } from "../../sanity.types";
 
 export const linkDocumentTypes = [
