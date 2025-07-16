@@ -36,6 +36,5 @@
     "clean": "rm -rf .next .turbo node_modules storybook-static tsconfig.tsbuildinfo",
     "dev": "storybook dev -p 6006 --no-open",
     "test": "vitest"
-  },
-  "type": "module"
+  }
 }
