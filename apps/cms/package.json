@@ -8,13 +8,13 @@
     "@t3-oss/env-core": "0.13.8",
     "@t3-oss/env-nextjs": "0.13.8",
     "groq": "4.1.1",
-    "next-sanity": "10.0.3",
+    "next-sanity": "10.0.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sanity": "4.1.1",
     "sanity-plugin-media": "3.0.4",
     "styled-components": "6.1.19",
-    "zod": "4.0.5"
+    "zod": "4.0.8"
   },
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
