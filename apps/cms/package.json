@@ -12,7 +12,7 @@
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "sanity": "4.2.0",
-    "sanity-plugin-media": "3.0.4",
+    "sanity-plugin-media": "3.0.5",
     "styled-components": "6.1.19",
     "zod": "4.0.14"
   },
@@ -22,7 +22,7 @@
     "@sanity/client": "7.8.1",
     "@types/react": "19.1.9",
     "chokidar-cli": "3.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "exports": {
     "./client/*": "./src/client/*.ts",
