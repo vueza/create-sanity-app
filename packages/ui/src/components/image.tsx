@@ -24,10 +24,13 @@ export const Image = ({ image, ...props }: ImageProps) => {
 
   const { width, height } = getImageDimensions(image.asset);
 
-  const sharedProps: Pick<
-    BaseImageProps,
-    "alt" | "placeholder" | "blurDataURL"
-  > = {
+  const sharedProps: Partial<
+    Pick<
+      BaseImageProps,
+      "alt" | "placeholder" | "blurDataURL" | "fill" | "width" | "height"
+    >
+  > &
+    Pick<BaseImageProps, "alt"> = {
     alt: props.alt ?? stegaClean(image.altText),
     ...(image.lqip ? { placeholder: "blur", blurDataURL: image.lqip } : {}),
     ...(props.fill
