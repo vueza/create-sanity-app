@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
-    "@portabletext/block-tools": "2.0.8",
+    "@portabletext/block-tools": "3.0.0",
     "@sanity/migrate": "4.3.0",
     "html-entities": "2.6.0",
     "jsdom": "26.1.0",
