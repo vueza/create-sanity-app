@@ -4,8 +4,10 @@ interface MainProps {
   children: ReactNode;
 }
 
+export const MAIN_ID = "main";
+
 export const Main = ({ children }: MainProps) => (
-  <main id="main" className="scroll-mt-20" tabIndex={-1}>
+  <main id={MAIN_ID} className="scroll-mt-20" tabIndex={-1}>
     {children}
   </main>
 );

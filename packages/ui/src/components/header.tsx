@@ -5,6 +5,7 @@ import { Xmark } from "../icons/x-mark";
 import { Button } from "./button";
 import { Container } from "./container";
 import { Link } from "./link";
+import { MAIN_ID } from "./main";
 
 interface HeaderProps {
   title: string;
@@ -19,7 +20,7 @@ export const Header = async ({ title }: HeaderProps) => {
     <header className="sticky top-0 bg-black py-5 text-white">
       <Button
         as={Link}
-        href="#main"
+        href={`#${MAIN_ID}`}
         className="-left-[10000px] absolute top-auto h-[1px] w-[1px] overflow-hidden focus:top-4 focus:left-4 focus:h-auto focus:w-auto"
       >
         Skip to main content
