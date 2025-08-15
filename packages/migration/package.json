@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
-    "@portabletext/block-tools": "3.1.0",
+    "@portabletext/block-tools": "3.2.1",
     "@sanity/migrate": "4.4.1",
     "html-entities": "2.6.0",
     "jsdom": "26.1.0",
-    "p-limit": "6.2.0",
+    "p-limit": "7.0.0",
     "sanity": "4.4.1"
   },
   "scripts": {
