@@ -6,7 +6,7 @@
     "@company/internationalization": "workspace:*",
     "@portabletext/react": "3.2.1",
     "@sanity/asset-utils": "2.2.1",
-    "next": "15.4.6",
+    "next": "15.4.7",
     "next-sanity": "10.0.12",
     "react": "19.1.1",
     "react-dom": "19.1.1",
