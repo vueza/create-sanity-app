@@ -14,13 +14,13 @@
     "sanity": "4.5.0",
     "sanity-plugin-media": "4.0.0",
     "styled-components": "6.1.19",
-    "zod": "4.0.17"
+    "zod": "4.1.0"
   },
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
     "@sanity/assist": "5.0.0",
     "@sanity/client": "7.9.0",
-    "@types/react": "19.1.10",
+    "@types/react": "19.1.11",
     "chokidar-cli": "3.0.0",
     "typescript": "5.9.2"
   },
