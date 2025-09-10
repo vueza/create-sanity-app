@@ -4,11 +4,11 @@
   "devDependencies": {
     "@company/config-typescript": "workspace:*",
     "@portabletext/block-tools": "3.5.4",
-    "@sanity/migrate": "4.7.0",
+    "@sanity/migrate": "4.8.0",
     "html-entities": "2.6.0",
     "jsdom": "26.1.0",
     "p-limit": "7.1.1",
-    "sanity": "4.7.0"
+    "sanity": "4.8.0"
   },
   "scripts": {
     "check-types": "tsc",
