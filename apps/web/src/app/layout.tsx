@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers";
-import { VisualEditing } from "next-sanity";
+import { VisualEditing } from "next-sanity/visual-editing";
 import type { ReactNode } from "react";
 import { DraftModeButton } from "../components/draft-mode-button";
 import "@company/config-tailwind/app.css";
