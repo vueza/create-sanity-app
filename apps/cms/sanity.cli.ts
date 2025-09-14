@@ -11,5 +11,5 @@ export default defineCliConfig({
     dataset: env.SANITY_STUDIO_DATASET,
   },
   studioHost: env.SANITY_STUDIO_STUDIO_HOST,
-  autoUpdates: true,
+  deployment: { autoUpdates: true },
 });
