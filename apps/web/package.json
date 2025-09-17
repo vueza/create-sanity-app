@@ -7,11 +7,11 @@
     "@next/bundle-analyzer": "15.5.3",
     "@sanity/asset-utils": "2.3.0",
     "next": "15.5.3",
-    "next-sanity": "11.1.0",
+    "next-sanity": "11.1.1",
     "postcss": "8.5.6",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "zod": "4.1.8"
+    "zod": "4.1.9"
   },
   "devDependencies": {
     "@company/config-tailwind": "workspace:*",
@@ -19,10 +19,10 @@
     "@tailwindcss/postcss": "4.1.13",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.0",
-    "@types/node": "24.3.3",
+    "@types/node": "24.5.2",
     "@types/react": "19.1.13",
     "@types/react-dom": "19.1.9",
-    "@vitejs/plugin-react": "5.0.2",
+    "@vitejs/plugin-react": "5.0.3",
     "jsdom": "27.0.0",
     "typescript": "5.9.2",
     "vite-tsconfig-paths": "5.1.4",
