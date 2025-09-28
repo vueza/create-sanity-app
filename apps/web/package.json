@@ -11,7 +11,7 @@
     "postcss": "8.5.6",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "zod": "4.1.9"
+    "zod": "4.1.11"
   },
   "devDependencies": {
     "@company/config-tailwind": "workspace:*",
@@ -19,8 +19,8 @@
     "@tailwindcss/postcss": "4.1.13",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.0",
-    "@types/node": "24.5.2",
-    "@types/react": "19.1.13",
+    "@types/node": "24.6.0",
+    "@types/react": "19.1.16",
     "@types/react-dom": "19.1.9",
     "@vitejs/plugin-react": "5.0.4",
     "jsdom": "27.0.0",
