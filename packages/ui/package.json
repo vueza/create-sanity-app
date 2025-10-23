@@ -18,7 +18,7 @@
     "@company/config-typescript": "workspace:*",
     "@types/react": "19.1.16",
     "@types/react-dom": "19.1.9",
-    "typescript": "5.9.2",
+    "typescript": "5.9.3",
     "vitest": "3.2.4"
   },
   "exports": {
