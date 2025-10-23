@@ -9,7 +9,7 @@
     "@t3-oss/env-nextjs": "0.13.8",
     "groq": "4.10.1",
     "next-sanity": "11.4.2",
-    "react": "19.1.1",
+    "react": "19.2.0",
     "react-dom": "19.1.1",
     "sanity": "4.10.1",
     "sanity-plugin-media": "4.0.0",
@@ -20,7 +20,7 @@
     "@company/config-typescript": "workspace:*",
     "@sanity/assist": "5.0.0",
     "@sanity/client": "7.11.2",
-    "@types/react": "19.1.16",
+    "@types/react": "19.2.2",
     "chokidar-cli": "3.0.0",
     "typescript": "5.9.3"
   },
