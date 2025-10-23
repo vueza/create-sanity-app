@@ -11,7 +11,7 @@
     "next-sanity": "11.4.2",
     "react": "19.1.1",
     "react-dom": "19.1.1",
-    "sanity": "4.10.1",
+    "sanity": "4.11.0",
     "sanity-plugin-media": "4.0.0",
     "styled-components": "6.1.19",
     "zod": "4.1.12"

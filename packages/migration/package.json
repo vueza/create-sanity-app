@@ -8,7 +8,7 @@
     "html-entities": "2.6.0",
     "jsdom": "27.0.1",
     "p-limit": "7.1.1",
-    "sanity": "4.10.1"
+    "sanity": "4.11.0"
   },
   "scripts": {
     "check-types": "tsc",
