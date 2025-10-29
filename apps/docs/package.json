@@ -11,7 +11,7 @@
     "@company/config-tailwind": "workspace:*",
     "@company/config-typescript": "workspace:*",
     "@mdx-js/react": "3.1.1",
-    "@storybook/addon-a11y": "9.1.13",
+    "@storybook/addon-a11y": "10.0.1",
     "@storybook/addon-designs": "10.0.2",
     "@storybook/addon-docs": "9.1.13",
     "@storybook/addon-themes": "9.1.13",
