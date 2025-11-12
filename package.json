@@ -10,7 +10,7 @@
     "editorconfig-checker": "6.1.0",
     "lefthook": "2.0.0",
     "syncpack": "13.0.4",
-    "turbo": "2.5.8",
+    "turbo": "2.6.1",
     "vitest": "3.2.4"
   },
   "engines": {
