@@ -20,7 +20,7 @@
     "@company/config-typescript": "workspace:*",
     "@sanity/assist": "5.0.0",
     "@sanity/client": "7.12.0",
-    "@types/react": "19.2.2",
+    "@types/react": "19.2.4",
     "chokidar-cli": "3.0.0",
     "typescript": "5.9.3"
   },
