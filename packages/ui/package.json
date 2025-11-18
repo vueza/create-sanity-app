@@ -4,7 +4,7 @@
   "dependencies": {
     "@base-ui-components/react": "1.0.0-beta.4",
     "@company/internationalization": "workspace:*",
-    "@portabletext/react": "4.0.3",
+    "@portabletext/react": "5.0.0",
     "@sanity/asset-utils": "2.3.0",
     "next": "16.0.0",
     "next-sanity": "11.5.6",
